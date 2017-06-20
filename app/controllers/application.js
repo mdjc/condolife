@@ -6,13 +6,14 @@ export default Ember.Controller.extend({
     actions: {
         onLogout() {
             let self = this;
-            self.get('ajax').post('/logout', { 
+            self.get('ajax').post('/logout', {
                 crossDomain: true,
+                xhrFields: { withCredentials: true },
                 contentType: 'text/plain',
                 dataType: "text"
             }).then(() => {
-                 this.get('session').logout(); 
-                 this.transitionToRoute('index');
+                self.get('session').logout(); 
+                self.transitionToRoute('index');
             });            
         }
     }

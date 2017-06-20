@@ -10,18 +10,16 @@ export default Ember.Controller.extend({
     actions: {
         login() {
             let self = this;
-            self.get('ajax').post('/login', { 
+            self.get('ajax').post('/login', {
                 crossDomain: true,
-                contentType: 'text/plain',
+                xhrFields: { withCredentials: true },
                 headers: { 
-                    "Authorization": "Basic " + btoa(self.get('username') + ":" + self.get('password')) 
-                },
-                xhrFields: {
-                        withCredentials: true
+                    "Authorization": "Basic " + 
+                    btoa(self.get('username') + ":" + self.get('password')) 
                 }
             }).then(response => {
-               this.get("session").login(response.name);
-               this.transitionToRoute('user-index');
+               self.get("session").login(response.name);
+               self.transitionToRoute('mybuildings');
             }).catch(function(error) {
                 if (isUnauthorizedError(error)) {
                     self.set("errorMsg", "invalid username/password");
