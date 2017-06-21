@@ -15,7 +15,7 @@ export default Ember.Route.extend({
 
     actions: {
         error(error) {
-            if (error.errors[0].status === '401') {
+            if (error && error.errors && error.errors[0].status === '401') {
                 this.get('session').logout();
                 this.replaceWith('login');
             }

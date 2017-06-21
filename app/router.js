@@ -10,6 +10,7 @@ Router.map(function() {
   this.route('login');
   this.route('mybuildings');
   this.route('dashboard', {path: 'dashboard/:buildingId'});
+  this.route("notfound", { path: "*path"});
 });
 
 export default Router;
