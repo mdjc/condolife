@@ -1,3 +1,9 @@
 .big-text {
     font-size: 25px;
 }
+
+.payment-summary {
+    border-bottom: 1px solid #bce8f1;
+    padding: 10px;
+}
+

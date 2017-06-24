@@ -31,7 +31,6 @@ export default Ember.Controller.extend({
                     self.set("errorMsg", "");
                 }), 3000);
             });
-           
         }
     }
 });

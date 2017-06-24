@@ -1,12 +1,7 @@
-import Ember from 'ember';
 import DS from 'ember-data';
 
-export default DS.RESTAdapter .extend({
-    session: Ember.inject.service(),
+export default DS.RESTAdapter.extend({
     host: 'http://localhost:8080',
-    namespace: Ember.computed('session.currentBuildingId', function() {
-        return "buildings/" + this.get('session').currentBuildingId;
-    }),
 
     ajax: function(url, method, hash) {
         hash = hash || {};
