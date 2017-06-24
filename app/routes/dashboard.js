@@ -11,17 +11,21 @@ export default Ember.Route.extend({
         this.get('session').setCurrentBuilding(buildingId);
 
         return RSVP.hash({
+           b: this.getBuilding(buildingId),
            bs: this.getBuildingStats(buildingId),
            payments: this.getPayments(buildingId)
         });        
     },
 
+    getBuilding(id) {
+        return this.store.findRecord('building', id);
+    },
+
     getBuildingStats(buildingId) {
         return this.get('ajax')
-            .request('/buildingStats', {
+            .request(`/buildings/${buildingId}/stats`, {
                 crossDomain: true,
-                xhrFields: { withCredentials: true },
-                data: {'buildingId':buildingId}
+                xhrFields: { withCredentials: true }
             });
     },
 

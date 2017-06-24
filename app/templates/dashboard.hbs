@@ -1,8 +1,8 @@
 <div class="container">
     <div class="row">
         <div class="col-xs-9">
-            <h1>Building {{model.bs.stats.building.name}}</h1>
-            <h3>Managed by: {{model.bs.stats.building.manager.name}}</h3>
+            <h1>Building {{model.b.name}}</h1>
+            <h3>Managed by: {{model.b.manager.name}}</h3>
         </div>
         <div class="col-xs-3 text-right">
             <p>Aparts: {{model.bs.stats.apartmentCount}} </p>
@@ -23,12 +23,8 @@
                 <div class="panel-body">
                     {{#each model.payments as |payment|}}
                         <div class='payment-summary'>
-                            {{payment.apartment.name}},  
-                            by {{payment.createdBy.name}} -
-                            <strong> 
-                                {{pesos payment.amount}} -
-                                {{payment.method}}
-                            </strong>
+                            {{payment.apartment.name}}, by {{payment.createdBy.name}} -
+                            <strong>{{pesos payment.amount}}-{{payment.method}}</strong>
                             ({{payment.status}})
                         </div>
                     {{/each}}
