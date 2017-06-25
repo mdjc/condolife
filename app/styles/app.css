@@ -7,3 +7,12 @@
     padding: 10px;
 }
 
+.header-with-divider {
+    border-bottom: 1px solid grey;
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+
+.monthly-balance {
+    padding-bottom: 10px;
+}

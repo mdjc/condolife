@@ -1,18 +1,30 @@
 <div class="container">
     <div class="row">
-        <div class="col-xs-9">
+        <div class="col-xs-8">
             <h1>Building {{model.b.name}}</h1>
             <h3>Managed by: {{model.b.manager.name}}</h3>
         </div>
-        <div class="col-xs-3 text-right">
-            <p>Aparts: {{model.bs.stats.apartmentCount}} </p>
-            <p>Residents:{{model.bs.stats.residentCount}}</p>
+        <div class="col-xs-4 text-right">
+                <p><strong>Apartments:</strong> <span class="badge">{{model.bs.stats.apartmentCount}}</span></p>
+                <p><strong>Residents:</strong><span class="badge">{{model.bs.stats.residentCount}}</span></p>
         </div>
     </div>
 
     <div class="row">
         <div class="col-xs-12">
             <p class="big-text">Account Balance: <strong> {{pesos model.bs.stats.balance}}</strong></p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="monthly-balance"> 
+                <h3 class='header-with-divider'>Monthly Balance</h3>
+                <p><strong>Validated Payments:</strong> {{pesos model.mb.stats.validatedPaymentTotal}}</p>  
+                <p><strong>Validated Payments:</strong> {{model.mb.stats.validatedPaymentCount}}</p>  
+                <p><strong>Validated Payments:</strong> {{model.mb.stats.pendingPaymentCount}}</p>  
+                <p><strong>Validated Payments:</strong> {{model.mb.stats.rejectedPaymentCount}}</p>  
+            </div>
         </div>
     </div>
 
