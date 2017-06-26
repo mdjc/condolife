@@ -1,48 +1,48 @@
 <div class="container">
     <div class="row">
         <div class="col-xs-8">
-            <h1>Building {{model.b.name}}</h1>
-            <h3>Managed by: {{model.b.manager.name}}</h3>
+            <h1>Edificio {{model.b.name}}</h1>
+            <h3>Administrado por: {{model.b.manager.name}}</h3>
         </div>
         <div class="col-xs-4 text-right">
-                <p><strong>Apartments: </strong>{{model.bs.stats.apartmentCount}}</p>
-                <p><strong>Residents: </strong>{{model.bs.stats.residentCount}}</p>
+                <p><strong>Apartamentos: </strong>{{model.bs.stats.apartmentCount}}</p>
+                <p><strong>Residentes: </strong>{{model.bs.stats.residentCount}}</p>
         </div>
     </div>
 
     <div class="row">
         <div class="col-xs-12">
-            <p class="big-text">Account Balance: <strong> {{pesos model.bs.stats.balance}}</strong></p>
+            <p class="big-text">Balance de la Cuenta: <strong> {{pesos model.bs.stats.balance}}</strong></p>
         </div>
     </div>
 
     <div class="monthly-balance">
     <div class="row">
         <div class="col-xs-12">
-            <h3 class='header-with-divider'><strong>Monthly Balance</strong></h3>
+            <h3 class='header-with-divider'><strong>Balance del Mes</strong></h3>
         </div>
     </div>
     <div class="row">
         <div class="col-xs-12 col-sm-6">
             <h4>
-                <strong>Collected:</strong> {{pesos model.ps.stats.validatedPaymentTotal}}
+                <strong>Recaudados:</strong> {{pesos model.ps.stats.validatedPaymentTotal}}
                 in <strong>{{model.ps.stats.validatedPaymentCount}}</strong> apartment(s) 
             </h4>            
         </div>
         <div class="col-xs-12 col-sm-6">
-            <h4><strong>Spent: </strong>{{model.os.stats.amount}}</h4>
+            <h4><strong>Gastados: </strong>{{pesos model.os.stats.amount}}</h4>
         </div>
     </div>
     <div class="row">
         <div class="col-xs-12">
             {{#if model.ps.stats.pendingPaymentCount}}
-                <button class="btn btn-warning" type="button">
-                    Pending: <span class="badge">{{model.ps.stats.pendingPaymentCount}}</span>
+                <button class="btn btn-warning padded-bottom" type="button">
+                    Pagos Pendientes: <span class="badge">{{model.ps.stats.pendingPaymentCount}}</span>
                 </button>
             {{/if}}
             {{#if model.ps.stats.rejectedPaymentCount}}
-                <button class="btn btn-danger" type="button">
-                    Rejected: <span class="badge">{{model.ps.stats.rejectedPaymentCount}}</span>
+                <button class="btn btn-danger padded-bottom" type="button">
+                    Pagos Rechazados: <span class="badge">{{model.ps.stats.rejectedPaymentCount}}</span>
                 </button>
             {{/if}}
         </div>
@@ -53,20 +53,20 @@
     <div class="row">
         <div class='col-xs-12 col-sm-6'>    
             <div class="panel panel-info">
-                <div class="panel-heading">Latest Payments</div>  
+                <div class="panel-heading">Ultimos Pagos</div>  
                 <div class="panel-body">
                     {{#unless model.payments.length}}
                         <div class='summary'>
-                            No new payments this month
+                            No hay nuevos pagos este mes.
                         </div>
                     {{/unless}}
 
                     {{#each model.payments as |payment|}}
                         <div class='summary'>
-                            Apt. {{payment.apartment.name}}, by {{payment.createdBy.name}} -
+                            Apt. {{payment.apartment.name}}, de {{payment.createdBy.name}} -
                             <strong>{{pesos payment.amount}} 
-                            on {{payment.createdOn.month}} {{payment.createdOn.dayOfMonth}}, 
-                            {{payment.method}}</strong>({{payment.status}})
+                            en {{translate payment.createdOn.month}} {{payment.createdOn.dayOfMonth}}, 
+                            {{translate payment.method}}</strong> ({{translate payment.status}})
                         </div>
                     {{/each}}
                 </div>
@@ -75,18 +75,18 @@
 
         <div class='col-xs-12 col-sm-6'>    
             <div class="panel panel-info">
-                <div class="panel-heading">Latest Outlays</div>  
+                <div class="panel-heading">Ultimos Gastos</div>  
                 <div class="panel-body">
                     {{#unless model.outlays.length}}
                         <div class='summary'>
-                            No new outlays this month
+                            No hay nuevos gastos este mes.
                         </div>
                     {{/unless}}
 
                     {{#each model.outlays as |outlay|}}
                         <div class='summary'>
-                            {{outlay.category}}, <strong>{{pesos outlay.amount}}</strong>
-                            on {{outlay.createdOn.month}} {{outlay.createdOn.dayOfMonth}},
+                            {{translate outlay.category}}, <strong>{{pesos outlay.amount}}</strong>
+                            on {{translate outlay.createdOn.month}} {{outlay.createdOn.dayOfMonth}},
                             {{#if outlay.comment}}
                                 ({{outlay.comment}})
                             {{/if}}

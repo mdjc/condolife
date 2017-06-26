@@ -8,6 +8,12 @@
     padding-top: 10px;
 }
 
+.padded-bottom {
+    padding: 12px;
+    margin-top: 10px;
+    margin-right: 10px;
+}
+
 .monthly-balance {
     padding-bottom: 25px;
 }
