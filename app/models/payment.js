@@ -5,5 +5,6 @@ export default DS.Model.extend({
     apartment: DS.attr(),
     createdBy: DS.attr(),
     method: DS.attr(),
-    status: DS.attr()
+    status: DS.attr(),
+    createdOn: DS.attr()
 });

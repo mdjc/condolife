@@ -20,8 +20,10 @@ export default Ember.Route.extend({
         return RSVP.hash({
            b: this.getBuilding(buildingId),
            bs: this.getBuildingStats(buildingId),
-           mb: this.getMonthlyBalance(buildingId, from, to),
-           payments: this.getPayments(from, to)
+           ps: this.getPaymentStats(buildingId, from, to),
+           os: this.getOutlayStats(buildingId, from, to),
+           payments: this.getPayments(from, to),
+           outlays: this.getOutlays(from, to)
         });        
     },
 
@@ -37,7 +39,7 @@ export default Ember.Route.extend({
             });
     },
 
-    getMonthlyBalance(buildingId, from, to) {
+    getPaymentStats(buildingId, from, to) {
          return this.get('ajax')
             .request(`/buildings/${buildingId}/payments/stats`, {
                 crossDomain: true,
@@ -46,8 +48,25 @@ export default Ember.Route.extend({
             });
     },
 
+    getOutlayStats(buildingId, from, to) {
+         return this.get('ajax')
+            .request(`/buildings/${buildingId}/outlays/stats`, {
+                crossDomain: true,
+                xhrFields: { withCredentials: true },
+                data: {'from': from, 'to': to}
+            });
+    },
+
     getPayments(from, to) {
         return this.get('store').query('payment', 
+            {'from': from, 
+            'to': to, 
+            'limit':'10',
+            'order' : 'desc'});
+    },
+
+    getOutlays(from, to) {
+        return this.get('store').query('outlay', 
             {'from': from, 
             'to': to, 
             'limit':'10',

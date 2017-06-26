@@ -2,11 +2,6 @@
     font-size: 25px;
 }
 
-.payment-summary {
-    border-bottom: 1px solid #bce8f1;
-    padding: 10px;
-}
-
 .header-with-divider {
     border-bottom: 1px solid grey;
     padding-bottom: 10px;
@@ -14,5 +9,11 @@
 }
 
 .monthly-balance {
+    padding-bottom: 25px;
+}
+
+.summary {
+    border-bottom: 1px solid #bce8f1;
     padding-bottom: 10px;
+    padding-top: 10px;
 }
