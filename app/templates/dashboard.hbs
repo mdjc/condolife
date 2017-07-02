@@ -1,8 +1,8 @@
 <div class="container">
     <div class="row">
         <div class="col-xs-8">
-            <h1>Edificio {{model.b.name}}</h1>
-            <h3>Administrado por: {{model.b.manager.name}}</h3>
+            <h3>Edificio {{model.b.name}}</h3>
+            <h4>Administrado por: {{model.b.manager.name}}</h4>
         </div>
         <div class="col-xs-4 text-right">
                 <p><strong>Apartamentos: </strong>{{model.bs.stats.apartmentCount}}</p>
@@ -12,25 +12,23 @@
 
     <div class="row">
         <div class="col-xs-12">
-            <p class="big-text">Balance de la Cuenta: <strong> {{pesos model.bs.stats.balance}}</strong></p>
+            <h4>Balance de la Cuenta: <strong> {{pesos model.bs.stats.balance}}</strong></h4>
         </div>
     </div>
 
     <div class="monthly-balance">
     <div class="row">
         <div class="col-xs-12">
-            <h3 class='header-with-divider'><strong>Balance del Mes</strong></h3>
+            <h4 class='header-with-divider'>Balance del Mes</h4>
         </div>
     </div>
     <div class="row">
         <div class="col-xs-12 col-sm-6">
-            <h4>
-                <strong>Recaudados:</strong> {{pesos model.ps.stats.validatedPaymentTotal}}
-                in <strong>{{model.ps.stats.validatedPaymentCount}}</strong> apartment(s) 
-            </h4>            
+            <strong>Recaudados:</strong> {{pesos model.ps.stats.validatedPaymentTotal}}
+            in <strong>{{model.ps.stats.validatedPaymentCount}}</strong> apartment(s)           
         </div>
         <div class="col-xs-12 col-sm-6">
-            <h4><strong>Gastados: </strong>{{pesos model.os.stats.amount}}</h4>
+            <strong>Gastados: </strong>{{pesos model.os.stats.amount}}
         </div>
     </div>
     <div class="row">

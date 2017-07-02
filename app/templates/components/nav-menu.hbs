@@ -1,28 +1,35 @@
 <div class="container">
-    <nav class="navbar navbar-default">
-        <div class="container-fluid">
-            <div class="navbar-header">
-              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-              </button>
-            {{#link-to "index" class="navbar-brand"}}CondoPal{{/link-to}}
-        </div>
-
-        <div class="collapse navbar-collapse">
-          {{#if authenticated}}
-            <p class="navbar-text"><span class="text-capitalize"><strong>{{username}}</strong></span></p>
-          {{/if}}
-          <ul class="nav navbar-nav navbar-right">
-            {{#if authenticated}}
-               <li><a href="" {{action "logout"}}>Cerrar Sesi&oacute;n</a></li>
-            {{else}} 
-                <li>{{#link-to "login"}}Iniciar Sesi&oacute;n{{/link-to}}</li>
-            {{/if}}
+  <nav class="navbar navbar-default navbar-custom">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        {{#link-to "index" class="navbar-left"}}<img src="logo-small.png">{{/link-to}}
+       </div>
+      <ul class="nav nav-pills navbar-right">
+      {{#if authenticated}}
+        <li class="dropdown {{if dropDownOpen 'open'}}">
+          <a href="#" class="dropdown-toggle" 
+            {{action "toggleDropDown"}} role="button" aria-haspopup="true">
+                <span class="glyphicon glyphicon-user font-lg"></span>
+                <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu">
+            <li>
+              <a href="" class="navbar-btn text-capitalize" 
+              {{action "toggleDropDown"}}>{{username}}</a>
+            </li>
+            
+            <li role="separator" class="divider"></li>
+            
+            <li>
+              <a href="" class="navbar-btn" {{action "toggleDropDown"}} 
+                {{action "logout"}}>Cerrar Sesi&oacute;n</a>
+            </li>
           </ul>
-        </div>
-      </div>
-    </nav>
+        </li>
+        {{else}}
+           <li>{{#link-to "login" class="navbar-btn"}}Iniciar Sesi&oacute;n{{/link-to}}</li>
+        {{/if}}
+      </ul>  
+    </div>
+  </nav>
 </div>

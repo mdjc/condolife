@@ -15,6 +15,17 @@ module.exports = function(environment) {
         // Prevent Ember Data from overriding Date.parse.
         Date: false
       }
+
+    },
+
+    googleFonts: [
+      'Josefin+Sans'
+    ],
+ 
+    // Set or update content security policies 
+    contentSecurityPolicy: {
+      'font-src': "'self' fonts.gstatic.com",
+      'style-src': "'self' fonts.googleapis.com"
     },
 
     APP: {
