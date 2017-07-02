@@ -5,73 +5,54 @@
             <h4>Administrado por: {{model.b.manager.name}}</h4>
         </div>
         <div class="col-xs-4 text-right">
-                <p><strong>Apartamentos: </strong>{{model.bs.stats.apartmentCount}}</p>
-                <p><strong>Residentes: </strong>{{model.bs.stats.residentCount}}</p>
+                <p><strong>Apartamentos: </strong>{{model.bSts.stats.apartmentCount}}</p>
+                <p><strong>Residentes: </strong>{{model.bSts.stats.residentCount}}</p>
         </div>
     </div>
 
     <div class="row">
         <div class="col-xs-12">
-            <h4>Balance de la Cuenta: <strong> {{pesos model.bs.stats.balance}}</strong></h4>
+            <h4>Balance de la Cuenta: <strong> {{pesos model.bSts.stats.balance}}</strong></h4>
         </div>
     </div>
 
     <div class="monthly-balance">
-    <div class="row">
-        <div class="col-xs-12">
-            <h4 class='header-with-divider'>Balance del Mes</h4>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-xs-12 col-sm-6">
-            <strong>Recaudados:</strong> {{pesos model.ps.stats.validatedPaymentTotal}}
-            in <strong>{{model.ps.stats.validatedPaymentCount}}</strong> apartment(s)           
-        </div>
-        <div class="col-xs-12 col-sm-6">
-            <strong>Gastados: </strong>{{pesos model.os.stats.amount}}
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-xs-12">
-            {{#if model.ps.stats.pendingPaymentCount}}
-                <button class="btn btn-warning padded-bottom" type="button">
-                    Pagos Pendientes: <span class="badge">{{model.ps.stats.pendingPaymentCount}}</span>
-                </button>
-            {{/if}}
-            {{#if model.ps.stats.rejectedPaymentCount}}
-                <button class="btn btn-danger padded-bottom" type="button">
-                    Pagos Rechazados: <span class="badge">{{model.ps.stats.rejectedPaymentCount}}</span>
-                </button>
-            {{/if}}
-        </div>
-    </div>
-
-    </div>
-
-    <div class="row">
-        <div class='col-xs-12 col-sm-6'>    
-            <div class="panel panel-info">
-                <div class="panel-heading">Ultimos Pagos</div>  
-                <div class="panel-body">
-                    {{#unless model.payments.length}}
-                        <div class='summary'>
-                            No hay nuevos pagos este mes.
-                        </div>
-                    {{/unless}}
-
-                    {{#each model.payments as |payment|}}
-                        <div class='summary'>
-                            Apt. {{payment.apartment.name}}, de {{payment.createdBy.name}} -
-                            <strong>{{pesos payment.amount}} 
-                            en {{translate payment.createdOn.month}} {{payment.createdOn.dayOfMonth}}, 
-                            {{translate payment.method}}</strong> ({{translate payment.status}})
-                        </div>
-                    {{/each}}
-                </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <h4 class='header-with-divider'>Balance del Mes</h4>
             </div>
         </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-4">
+                <strong>Recaudados:</strong> {{pesos model.billSts.stats.paidBillTotal}}
+                in <strong>{{model.billSts.stats.paidBillCount}}</strong> apartment(s)           
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-4">
+                <strong>Gastados: </strong>{{pesos model.os.stats.amount}}
+            </div>
 
-        <div class='col-xs-12 col-sm-6'>    
+            <div class="col-xs-12 col-sm-6 col-md-4">
+                <strong>Facturas Pendientes: </strong>{{model.billSts.stats.pendingBillCount}}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                {{#if model.billSts.stats.pendingBillCount}}
+                    <button class="btn btn-warning padded-bottom" type="button">
+                        Facturas por Validar: <span class="badge">{{model.billSts.stats.pendingBillCount}}</span>
+                    </button>
+                {{/if}}
+                {{#if model.billSts.stats.rejectedBillCount}}
+                    <button class="btn btn-danger padded-bottom" type="button">
+                        Pagos Rechazados: <span class="badge">{{model.billSts.stats.rejectedBillCount}}</span>
+                    </button>
+                {{/if}}
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class='col-xs-12 col-sm'>    
             <div class="panel panel-info">
                 <div class="panel-heading">Ultimos Gastos</div>  
                 <div class="panel-body">
@@ -93,7 +74,6 @@
                 </div>
             </div>
         </div>
-    </div>
-       
+    </div> 
 </div>
 {{outlet}}
