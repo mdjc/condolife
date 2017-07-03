@@ -8,8 +8,8 @@ const Router = Ember.Router.extend({
 
 Router.map(function() {
   this.route('login');
-  this.route('mybuildings');
-  this.route('dashboard', {path: 'mybuildings/:buildingId/dashboard'});
+  this.route('condos');
+  this.route('dashboard', {path: 'condos/:condoId/dashboard'});
  
   this.route("notfound");
   this.route('unexpected-error');

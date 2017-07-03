@@ -19,7 +19,7 @@ export default Ember.Controller.extend({
                 }
             }).then(response => {
                self.get("session").login(response.name);
-               self.transitionToRoute('mybuildings');
+               self.transitionToRoute('condos');
             }).catch(function(error) {
                 if (isUnauthorizedError(error)) {
                     self.set("errorMsg", "invalid username/password");

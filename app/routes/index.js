@@ -5,7 +5,7 @@ export default Ember.Route.extend({
     
     beforeModel() {
         if (this.get('session').userAuthenticated()) {
-           this.replaceWith('mybuildings');
+           this.replaceWith('condos');
         }
     }
 });

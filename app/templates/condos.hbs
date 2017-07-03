@@ -1,9 +1,9 @@
 <div class="container">
     <div class="jumbotron">
-        <h2>Seleccione un Edificio</h2>
+        <h2>Seleccione un Condominio</h2>
         <div class="btn-group-vertical btn-group-lg" role="group">
-            {{#each model as |building|}}
-                {{#link-to "dashboard" building.id class="btn btn-default"}}{{building.name}}{{/link-to}}
+            {{#each model as |condo|}}
+                {{#link-to "dashboard" condo.id class="btn btn-default"}}{{condo.name}}{{/link-to}}
             {{/each}}          
         </div>
     </div>

@@ -7,8 +7,8 @@ export default Ember.Route.extend({
     dateUtils: Ember.inject.service(),
 
     model(params) {
-        let buildingId = params.buildingId;
-        this.get('session').setCurrentBuilding(buildingId);
+        let condoId = params.condoId;
+        this.get('session').setCurrentCondo(condoId);
 
         var dateUtils = this.get('dateUtils');
         var today = new Date();
@@ -18,38 +18,38 @@ export default Ember.Route.extend({
         var to = dateUtils.toStr(endOfMonth);
 
         return RSVP.hash({
-           b: this.getBuilding(buildingId),
-           bSts: this.getBuildingStats(buildingId),
-           billSts: this.getBillsStats(buildingId, from, to),
-           os: this.getOutlayStats(buildingId, from, to),
+           c: this.getCondo(condoId),
+           cSts: this.getCondoStats(condoId),
+           billSts: this.getBillsStats(condoId, from, to),
+           os: this.getOutlayStats(condoId, from, to),
            outlays: this.getOutlays(from, to)
         });        
     },
 
-    getBuilding(id) {
-        return this.store.findRecord('building', id);
+    getCondo(id) {
+        return this.store.findRecord('condo', id);
     },
 
-    getBuildingStats(buildingId) {
+    getCondoStats(condoId) {
         return this.get('ajax')
-            .request(`/buildings/${buildingId}/stats`, {
+            .request(`/condos/${condoId}/stats`, {
                 crossDomain: true,
                 xhrFields: { withCredentials: true }
             });
     },
 
-    getBillsStats(buildingId, from, to) {
+    getBillsStats(condoId, from, to) {
          return this.get('ajax')
-            .request(`/buildings/${buildingId}/bills/stats`, {
+            .request(`/condos/${condoId}/bills/stats`, {
                 crossDomain: true,
                 xhrFields: { withCredentials: true },
                 data: {'from': from, 'to': to}
             });
     },
 
-    getOutlayStats(buildingId, from, to) {
+    getOutlayStats(condoId, from, to) {
          return this.get('ajax')
-            .request(`/buildings/${buildingId}/outlays/stats`, {
+            .request(`/condos/${condoId}/outlays/stats`, {
                 crossDomain: true,
                 xhrFields: { withCredentials: true },
                 data: {'from': from, 'to': to}

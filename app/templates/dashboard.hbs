@@ -1,18 +1,18 @@
 <div class="container">
     <div class="row">
         <div class="col-xs-8">
-            <h3>Edificio {{model.b.name}}</h3>
-            <h4>Administrado por: {{model.b.manager.name}}</h4>
+            <h3>Condominio {{model.c.name}}</h3>
+            <h4>Administrado por: {{model.c.manager.name}}</h4>
         </div>
         <div class="col-xs-4 text-right">
-                <p><strong>Apartamentos: </strong>{{model.bSts.stats.apartmentCount}}</p>
-                <p><strong>Residentes: </strong>{{model.bSts.stats.residentCount}}</p>
+                <p><strong>Apartamentos: </strong>{{model.cSts.stats.apartmentCount}}</p>
+                <p><strong>Residentes: </strong>{{model.cSts.stats.residentCount}}</p>
         </div>
     </div>
 
     <div class="row">
         <div class="col-xs-12">
-            <h4>Balance General: <strong> {{pesos model.bSts.stats.balance}}</strong></h4>
+            <h4>Balance General: <strong> {{pesos model.cSts.stats.balance}}</strong></h4>
         </div>
     </div>
 

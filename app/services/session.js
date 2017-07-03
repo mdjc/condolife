@@ -2,12 +2,12 @@ import Ember from 'ember';
 
 export default Ember.Service.extend({
     currentUsername: null,
-    currentBuildingId: null,
+    currentCondoId: null,
 
     init() {
         this._super(...arguments);
         this.set('currentUsername', this.loadFromStorage("currentUsername"));
-        this.set('currentBuildingId', "");
+        this.set('currentCondoId', "");
     },
 
     login(username) {
@@ -24,12 +24,12 @@ export default Ember.Service.extend({
         return this.get('currentUsername') !== "";
     },
 
-    setCurrentBuilding(id) {
-        this.set('currentBuildingId', id);
+    setCurrentCondo(id) {
+        this.set('currentCondoId', id);
     },
 
-    getCurrentBuilding() {
-        this.get('currentBuildingId');
+    getCurrentCondo() {
+        this.get('currentCondoId');
     },
 
    loadFromStorage(field) {
