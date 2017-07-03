@@ -12,7 +12,7 @@
 
     <div class="row">
         <div class="col-xs-12">
-            <h4>Balance de la Cuenta: <strong> {{pesos model.bSts.stats.balance}}</strong></h4>
+            <h4>Balance General: <strong> {{pesos model.bSts.stats.balance}}</strong></h4>
         </div>
     </div>
 
@@ -24,27 +24,28 @@
         </div>
         <div class="row">
             <div class="col-xs-12 col-sm-6 col-md-4">
-                <strong>Recaudados:</strong> {{pesos model.billSts.stats.paidBillTotal}}
-                in <strong>{{model.billSts.stats.paidBillCount}}</strong> apartment(s)           
+                <strong>Recaudados:</strong> {{pesos model.billSts.stats.paidConfirmedBillTotal}}
+                en {{model.billSts.stats.paidConfirmedBillCount}} apartment(s)           
             </div>
             <div class="col-xs-12 col-sm-6 col-md-4">
                 <strong>Gastados: </strong>{{pesos model.os.stats.amount}}
             </div>
 
             <div class="col-xs-12 col-sm-6 col-md-4">
-                <strong>Facturas Pendientes: </strong>{{model.billSts.stats.pendingBillCount}}
+                <strong>Facturas pendientes: </strong>{{model.billSts.stats.pendingBillCount}}
             </div>
         </div>
         <div class="row">
             <div class="col-xs-12">
-                {{#if model.billSts.stats.pendingBillCount}}
+                {{#if model.billSts.stats.paidAwaitingConfirmationBillCount}}
                     <button class="btn btn-warning padded-bottom" type="button">
-                        Facturas por Validar: <span class="badge">{{model.billSts.stats.pendingBillCount}}</span>
+                        Pagos por confirmar: 
+                        <span class="badge">{{model.billSts.stats.paidAwaitingConfirmationBillCount}}</span>
                     </button>
                 {{/if}}
                 {{#if model.billSts.stats.rejectedBillCount}}
                     <button class="btn btn-danger padded-bottom" type="button">
-                        Pagos Rechazados: <span class="badge">{{model.billSts.stats.rejectedBillCount}}</span>
+                        Pagos rechazados: <span class="badge">{{model.billSts.stats.rejectedBillCount}}</span>
                     </button>
                 {{/if}}
             </div>
