@@ -1,0 +1,20 @@
+<div class="container">
+    <div class="row">
+         <button type="button" {{action "toggleMenu"}} 
+            class="btn btn-primary visible-xs pull-right">Men&uacute;</button>    
+    </div>
+    
+    <div class="row row-offcanvas row-offcanvas-right {{if offCanvasMenuOpen 'active'}}">   
+        <div class="col-xs-12 col-sm-9">
+             {{outlet}}
+        </div>
+
+        <div class="col-xs-6 col-sm-3 sidebar-offcanvas">
+          <div class="list-group">
+            {{#link-to "condo.dashboard" model.condoId class="list-group-item"}}Pizarra{{/link-to}}
+            {{#link-to "condo.due-bills" model.condoId class="list-group-item"}}Facturas por pagar{{/link-to}}
+          </div>
+        </div><!--/.sidebar-offcanvas-->
+    </div>
+</div>
+

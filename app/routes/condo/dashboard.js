@@ -6,9 +6,8 @@ export default Ember.Route.extend({
     session: Ember.inject.service(),
     dateUtils: Ember.inject.service(),
 
-    model(params) {
-        let condoId = params.condoId;
-        this.get('session').setCurrentCondo(condoId);
+    model(params, transition) {       
+        let condoId = transition.params["condo"].condoId;
 
         var dateUtils = this.get('dateUtils');
         var today = new Date();

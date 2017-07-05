@@ -9,8 +9,11 @@ const Router = Ember.Router.extend({
 Router.map(function() {
   this.route('login');
   this.route('condos');
-  this.route('dashboard', {path: 'condos/:condoId/dashboard'});
- 
+  this.route('condo', {path: 'condos/:condoId'}, function() {
+    this.route('dashboard');
+    this.route('due-bills');
+  });
+
   this.route("notfound");
   this.route('unexpected-error');
   this.route("page-notfound", { path: "*path"});
