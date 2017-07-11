@@ -2,7 +2,8 @@ import Ember from 'ember';
 
 export default Ember.Service.extend({
     toStr(date) {
-      return date.getFullYear() + '-' + this.padWithZero((date.getMonth()+ 1)) + '-' + this.padWithZero(date.getDate());   
+      return date.getFullYear() + '-' + this.padWithZero((date.getMonth()+ 1)) + '-' 
+        + this.padWithZero(date.getDate());   
     },
 
     beginningOfMonth(date) {

@@ -26,7 +26,7 @@ export default Ember.Route.extend({
     },
 
     getCondo(id) {
-        return this.store.findRecord('condo', id);
+        return this.get('store').findRecord('condo', id);
     },
 
     getCondoStats(condoId) {

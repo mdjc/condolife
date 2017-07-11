@@ -1,1 +1,26 @@
-<h2>Facturas por pagar</h2>
+<h2>Facturas por pagar </h2>
+<h4>Debes: {{pesos totalDue}}</h4>
+<div class="panel panel-info">
+    <div class="panel-body">
+        {{#unless model.length}}
+            <div class='summary'>
+                No hay facturas por pagar.
+            </div>
+        {{/unless}}
+
+       {{#each model as |bill|}}
+            <div class='summary'>
+                {{#link-to "condo.due-bill" bill class="btn btn-default"}}Pagar{{/link-to}}
+
+                <strong> No. {{bill.id}}</strong> - Pago {{translate bill.paymentStatus}},
+                {{bill.description}} por {{pesos bill.dueAmount}}- 
+                <strong>
+                    pague antes de {{translate bill.dueDate.month}} {{bill.dueDate.dayOfMonth}}/{{bill.dueDate.year}}
+                </strong>
+            </div>
+
+        {{/each}}
+    </div>
+</div>
+
+    

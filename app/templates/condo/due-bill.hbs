@@ -1,0 +1,40 @@
+<h2>Pagar Factura No. <strong>{{model.id}}</strong></h2>
+
+<div class='summary'>
+    <p><strong>Estado del Pago:</strong><span class="text-capitalize"> {{translate model.paymentStatus}}</span></p>
+    <p><strong>Concepto:</strong><span class="text-capitalize"> {{model.description}}</span></p>
+    <p><strong>Monto:</strong><span class="text-capitalize"> {{pesos model.dueAmount}}</span></p>
+    <p><strong>Vence en:</strong>
+        {{translate model.dueDate.month}} {{model.dueDate.dayOfMonth}} de {{model.dueDate.year}}
+    </p>
+</div>
+<div class="form-group row">
+    <div class="col-xs-6 col-sm-4 col-md-3">
+        <div class="margin-box">
+            <label for="method">Forma de Pago</label>
+            <select class="form-control" onchange={{action "selectPaymentMethod" value="target.value"}}>
+              {{#each paymentMethods as |paymentMethod|}}
+                <option value={{paymentMethod.value}} selected={{eq model.paymentMethod paymentMethod.value}}>
+                {{paymentMethod.label}}</option>
+              {{/each}}
+            </select>
+        </div>
+    </div>
+</div>
+<div class="form-group row">
+    <div class="col-xs-12">
+        <img src="{{proofOfPaymentImgSrc}}" class='img-responsive boucher'>
+        {{#x-file-input name="files" multiple=false action=(action "didSelectFiles") accept="image/*"}}
+            <label for="proofOfPayment" class="btn btn-default btn-outlined" 
+                    {{action "showLoadedImage"}}>Agregar Comprobante
+            </label>
+        {{/x-file-input}}
+    </div>
+</div>
+<button class="btn btn-primary" type="button" {{action "sendPayment"}}>Enviar</button>
+{{#if errorMsg}}
+    <div class="alert alert-danger">{{errorMsg}}</div>
+{{/if}}
+{{#if successMsg}}
+    <div class="alert alert-success">{{successMsg}}</div>
+{{/if}}

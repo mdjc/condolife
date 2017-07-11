@@ -53,7 +53,7 @@
 </div>
 
 <div class="row">
-    <div class='col-xs-12 col-sm'>    
+    <div class='col-xs-12'>    
         <div class="panel panel-info">
             <div class="panel-heading">Ultimos Gastos</div>  
             <div class="panel-body">
@@ -66,7 +66,7 @@
                 {{#each model.outlays as |outlay|}}
                     <div class='summary'>
                         {{translate outlay.category}}, <strong>{{pesos outlay.amount}}</strong>
-                        on {{translate outlay.createdOn.month}} {{outlay.createdOn.dayOfMonth}},
+                        en {{translate outlay.createdOn.month}} {{outlay.createdOn.dayOfMonth}},
                         {{#if outlay.comment}}
                             ({{outlay.comment}})
                         {{/if}}

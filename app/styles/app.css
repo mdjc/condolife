@@ -88,6 +88,12 @@
     margin-right: 10px;
 }
 
+.margin-box {
+    margin-top: 10px;
+    margin-right: 10px;
+}
+
+
 .monthly-balance {
     padding-bottom: 25px;
 }
@@ -100,4 +106,5 @@
 
 .boucher {
     width:150px;
+    height: 150px;
 }

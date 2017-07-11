@@ -4,12 +4,12 @@ export default Ember.Component.extend({
     dropDownOpen: false,
     session: Ember.inject.service(),
 
-    username: Ember.computed('session.currentUsername', function() {
-       return this.get('session').currentUsername;
+    username: Ember.computed('session.currentUsername', function () {
+      return this.get('session').currentUsername; 
     }),
     
     authenticated: Ember.computed('session.currentUsername', function() {
-       return this.get('session').userAuthenticated();
+      return this.get('session').userAuthenticated();
     }),
 
     actions: {
