@@ -1,0 +1,18 @@
+<h2>Facturas Pagadas por Confirmar</h2>
+<div class="panel panel-info">
+    <div class="panel-body">
+        {{#unless model.length}}
+            <div class='summary'>
+                No hay facturas por confirmar.
+            </div>
+        {{/unless}}
+
+        {{#each model as |bill|}}
+            <div class='summary'>
+                {{#link-to "condo.condo-bill" bill class="btn btn-default"}}Ver{{/link-to}}
+                <strong> No. {{bill.id}}</strong> (Apartamento {{bill.apartment.name}}) -
+                {{bill.description}} por {{pesos bill.dueAmount}}
+            </div>
+        {{/each}}
+    </div>
+</div>

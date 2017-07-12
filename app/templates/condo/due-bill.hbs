@@ -1,13 +1,5 @@
 <h2>Pagar Factura No. <strong>{{model.id}}</strong></h2>
-
-<div class='summary'>
-    <p><strong>Estado del Pago:</strong><span class="text-capitalize"> {{translate model.paymentStatus}}</span></p>
-    <p><strong>Concepto:</strong><span class="text-capitalize"> {{model.description}}</span></p>
-    <p><strong>Monto:</strong><span class="text-capitalize"> {{pesos model.dueAmount}}</span></p>
-    <p><strong>Vence en:</strong>
-        {{translate model.dueDate.month}} {{model.dueDate.dayOfMonth}} de {{model.dueDate.year}}
-    </p>
-</div>
+{{bill-summary bill=model}}
 <div class="form-group row">
     <div class="col-xs-6 col-sm-4 col-md-3">
         <div class="margin-box">
@@ -23,7 +15,7 @@
 </div>
 <div class="form-group row">
     <div class="col-xs-12">
-        <img src="{{proofOfPaymentImgSrc}}" class='img-responsive boucher'>
+        <img src="{{proofOfPaymentImgSrc}}" class='img-responsive img-preview'>
         {{#x-file-input name="files" multiple=false action=(action "didSelectFiles") accept="image/*"}}
             <label for="proofOfPayment" class="btn btn-default btn-outlined" 
                     {{action "showLoadedImage"}}>Agregar Comprobante

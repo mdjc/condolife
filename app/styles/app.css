@@ -104,7 +104,18 @@
     padding-top: 10px;
 }
 
-.boucher {
-    width:150px;
+.img-preview {
+    width: 150px;
     height: 150px;
+}
+
+.img-small {
+  cursor: zoom-in;
+  width: 150px;
+  height: 150px;
+}
+
+.img-big {
+  cursor: zoom-out;
+  width: 100%;
 }

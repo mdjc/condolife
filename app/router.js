@@ -13,6 +13,8 @@ Router.map(function() {
     this.route('dashboard');
     this.route('due-bills');
     this.route('due-bill', {path: 'due-bills/:bill_id'});
+    this.route('unconfirmed-bills');
+    this.route('condo-bill', {path: 'condo-bill/:condo-bill_id'});
   });
 
 

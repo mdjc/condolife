@@ -1,0 +1,9 @@
+<div class='summary'>
+    <p><strong>Estado del Pago: </strong> {{translate bill.paymentStatus}}</p>
+    <p><strong>Concepto: </strong>{{bill.description}}</p>
+    <p><strong>Monto: </strong>{{pesos bill.dueAmount}}</p>
+    <p><strong>Vence en: </strong>
+        {{translate bill.dueDate.month}} {{bill.dueDate.dayOfMonth}} de {{bill.dueDate.year}}
+    </p>
+    {{yield}}
+</div>

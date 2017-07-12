@@ -20,6 +20,12 @@
                 <span class="glyphicon glyphicon glyphicon glyphicon-list-alt"></span> Facturas por Pagar
               {{/link-to}}
             {{/if}}
+
+            {{#if (not isResident)}}
+              {{#link-to "condo.unconfirmed-bills" model.condoId class="list-group-item"}}
+               <span class="glyphicon glyphicon glyphicon glyphicon-list-alt"></span> Facturas por Confirmar
+              {{/link-to}}
+            {{/if}}
           </div>
         </div><!--/.sidebar-offcanvas-->
     </div>

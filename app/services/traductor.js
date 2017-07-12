@@ -13,7 +13,8 @@ export default Ember.Service.extend({
         map.set('TRANSFER', 'Transferencia');
 
         map.set('PENDING', 'Pendiente');
-        map.set('VALIDATED', 'Validado');
+        map.set('PAID_AWAITING_CONFIRMATION', 'En espera de confirmación');
+        map.set('PAID_CONFIRMED', 'Confirmado');
         map.set('REJECTED', 'Rechazado');
 
         map.set('SECURITY', 'Seguridad');

@@ -15,7 +15,6 @@ export default DS.RESTAdapter.extend({
         hash.crossDomain = true;
         hash.xhrFields = {withCredentials: true};
         hash.traditional = true;
-
         return this._super(url, method, hash);
     }
 });
