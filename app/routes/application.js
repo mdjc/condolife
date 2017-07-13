@@ -18,7 +18,7 @@ export default Ember.Route.extend(AjaxServiceSupport, {
     actions: {
         error(error) {
             const request = this.emberDataOrAjaxRequest;
-
+            
             if (request.unauthorized(error)) {
                 this.get('session').logout();
                 this.replaceWith('login');

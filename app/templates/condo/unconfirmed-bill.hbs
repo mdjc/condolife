@@ -15,5 +15,11 @@
             <img src="{{proofOfPaymentImg}}" class="btn img-responsive img-small {{if imgBig 'img-big'}}">
         </button>
 {{/if}}
-<button type="button" class="btn btn-default btn-success">Confirmar</button>
-<button type="button" class="btn btn-default">Rechazar</button>
+<button type="button" class="btn btn-default btn-success" {{action "confirmBill"}}>Confirmar</button>
+<button type="button" class="btn btn-default" {{action "rejectBill"}}>Rechazar</button>
+{{#if errorMsg}}
+    <div class="alert alert-danger">{{errorMsg}}</div>
+{{/if}}
+{{#if successMsg}}
+    <div class="alert alert-success">{{successMsg}}</div>
+{{/if}}

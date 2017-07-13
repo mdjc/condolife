@@ -1,6 +1,6 @@
 import { moduleFor, test } from 'ember-qunit';
 
-moduleFor('route:condo/condo-bill', 'Unit | Route | condo/condo bill', {
+moduleFor('route:condo/unconfirmed-bill', 'Unit | Route | condo/unconfirmed bill', {
   // Specify the other units that are required for this test.
   // needs: ['controller:foo']
 });

@@ -25,7 +25,7 @@
     <div class="row">
         <div class="col-xs-12 col-sm-6 col-md-4">
             <strong>Recaudados:</strong> {{pesos model.billSts.stats.paidConfirmedBillTotal}}
-            en {{model.billSts.stats.paidConfirmedBillCount}} apartment(s)           
+            en {{model.billSts.stats.paidConfirmedBillCount}} factura(s)           
         </div>
         <div class="col-xs-12 col-sm-6 col-md-4">
             <strong>Gastados: </strong>{{pesos model.os.stats.amount}}
@@ -36,19 +36,15 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-xs-12 col-sm-6 col-md-4">
-            {{#if model.billSts.stats.paidAwaitingConfirmationBillCount}}
-                <strong>Pagos por confirmar: </strong>
-                <span class="badge">
-                    {{model.billSts.stats.paidAwaitingConfirmationBillCount}}
-                </span>
-            {{/if}}
+        <div class="col-xs-12 col-sm-6 col-md-4">            
+            <strong>Facturas por confirmar: </strong>
+            <span class="badge">
+                {{model.billSts.stats.paidAwaitingConfirmationBillCount}}
+            </span>
         </div>
         <div class="col-xs-12 col-sm-6 col-md-4">
-            {{#if model.billSts.stats.rejectedBillCount}}
-                <strong> Pagos rechazados: </strong>
-                <span class="badge">{{model.billSts.stats.rejectedBillCount}}</span>
-            {{/if}}
+            <strong>Facturas rechazadas: </strong>
+            <span class="badge">{{model.billSts.stats.rejectedBillCount}}</span>
         </div>
     </div>
 </div>

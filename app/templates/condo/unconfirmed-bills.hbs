@@ -9,7 +9,7 @@
 
         {{#each model as |bill|}}
             <div class='summary'>
-                {{#link-to "condo.condo-bill" bill class="btn btn-default"}}Ver{{/link-to}}
+                {{#link-to "condo.unconfirmed-bill" bill class="btn btn-default"}}Ver{{/link-to}}
                 <strong> No. {{bill.id}}</strong> (Apartamento {{bill.apartment.name}}) -
                 {{bill.description}} por {{pesos bill.dueAmount}}
             </div>
