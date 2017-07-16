@@ -1,20 +1,5 @@
-<h2>Factura No. {{model.id}}</h2>
-{{#bill-summary bill=model}}
-    <p>
-        <strong>Apartamento (Residente):</strong>
-        <span class="text-capitalize"> {{model.apartment.name}}</span>
-    </p>
-{{/bill-summary}}
-{{#if model.paymentMethod}}
-        <p>
-            <strong>Forma de Pago:</strong>
-            <span class="text-capitalize"> {{translate model.paymentMethod}}</span>
-        </p>
-
-        <button type="button" class="thumbnail" {{action "toggleResize"}}>
-            <img src="{{proofOfPaymentImg}}" class="btn img-responsive img-small {{if imgBig 'img-big'}}">
-        </button>
-{{/if}}
+{{bill-summary-condo bill=model}}
+{{payment-info bill=model}}
 <button type="button" class="btn btn-default btn-success" {{action "confirmBill"}}>Confirmar</button>
 <button type="button" class="btn btn-default" {{action "rejectBill"}}>Rechazar</button>
 {{#if errorMsg}}

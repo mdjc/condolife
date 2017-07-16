@@ -1,0 +1,7 @@
+<h2>Factura No. {{bill.id}}</h2>
+{{#bill-summary bill=bill}}
+    <p>
+        <strong>Apartamento (Residente):</strong>
+        <span class="text-capitalize"> {{bill.apartment.name}}</span>
+    </p>
+{{/bill-summary}}

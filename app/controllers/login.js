@@ -9,6 +9,16 @@ export default Ember.Controller.extend({
     password: "",
     errorMsg: "",
 
+    init() {
+        this.set('username', '');
+        this.set('password', '');
+        this.set('errorMsg', '');
+
+        Ember.run.scheduleOnce('afterRender', this, function() {
+            $('#username').focus();
+        });  
+    },
+
     actions: {
         login() {
             let self = this;

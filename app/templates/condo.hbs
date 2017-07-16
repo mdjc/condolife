@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row">
          <button type="button" {{action "toggleMenu"}} 
-            class="btn btn-primary visible-xs pull-right">Men&uacute;</button>    
+          class="btn btn-primary visible-xs pull-right">Men&uacute;</button>    
     </div>
     
     <div class="row row-offcanvas row-offcanvas-right {{if offCanvasMenuOpen 'active'}}">   
@@ -23,9 +23,13 @@
 
             {{#if (not isResident)}}
               {{#link-to "condo.unconfirmed-bills" model.condoId class="list-group-item"}}
-               <span class="glyphicon glyphicon glyphicon glyphicon-list-alt"></span> Facturas por Confirmar
+                <span class="glyphicon glyphicon glyphicon glyphicon-list-alt"></span> Facturas por Confirmar
               {{/link-to}}
             {{/if}}
+          
+            {{#link-to "condo.bill-log" model.condoId class="list-group-item"}}
+              <span class="glyphicon glyphicon glyphicon glyphicon glyphicon-book"></span> Hist&oacute;rico de Facturas
+            {{/link-to}}
           </div>
         </div><!--/.sidebar-offcanvas-->
     </div>

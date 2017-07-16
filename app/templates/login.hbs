@@ -3,11 +3,11 @@
     <form {{action 'login' on='submit'}}>
       <div class="form-group">
         <label for="username">Nombre de Usuario</label>
-        {{input id="username" type="text" class="form-control" placeholder="Nombre de usuario" value=username}}
+        {{input id="username" type="text" class="form-control" placeholder="Nombre de usuario" value=username }}
       </div>
       <div class="form-group">
         <label for="password">Contrase&ntilde;a</label>
-        {{input type="password" class="form-control" id="password" placeholder="Contraseña" value=password }}
+        {{input type="password" class="form-control" id="password" placeholder="Contraseña" value=password}}
       </div>
       <button type="submit" class="btn btn-default">Iniciar Sesi&oacute;n</button>
       {{#if errorMsg}}

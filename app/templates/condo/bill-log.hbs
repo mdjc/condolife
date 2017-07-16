@@ -1,0 +1,81 @@
+<h2>Hist&oacute;rico de Facturas</h2>
+
+<div class="panel panel-default">
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-xs-6 col-sm-4">
+                <div class="form-group">
+                    <label for="from">Desde</label>
+                    {{input type="date" class="form-control" value=from id="from"}}
+                </div>
+            </div>
+
+            <div class="col-xs-6 col-sm-4">
+                <div class="form-group">
+                    <label for="tp">Hasta</label>
+                    {{input type="date" class="form-control" value=to id="to"}}
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-6 col-md-2">
+                <div class="checkbox">
+                  <label>{{input type="checkbox" checked=pending id="pending"}}Pendientes</label>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-4">
+                <div class="checkbox">
+                  <label>{{input type="checkbox" checked=awaitingConfirmation id="awaitingConfirmation"}}En espera de confirmación</label>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-2">
+                <div class="checkbox">
+                  <label>{{input type="checkbox" checked=confirmed id="confirmed"}}Confirmadas</label>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-2">
+                <div class="checkbox">
+                  <label>{{input type="checkbox" checked=rejected id="rejected"}}Rechazadas</label>
+            </div>
+        </div>
+    </div>
+    <button type="button" class="btn btn-default" {{action "search"}}>Buscar</button>
+
+    {{#if errorMsg}}
+        <div class="alert alert-danger">{{errorMsg}}</div>
+    {{/if}}
+  </div>
+</div>
+
+<div class="row">
+    <div class='col-xs-12'>    
+        <div class="panel panel-info">
+            <div class="panel-heading">Resultados</div>  
+            <div class="panel-body">
+                {{#unless results.length}}
+                    <div class='summary'>
+                        No existen resultados para la b&uacute;squeda.
+                    </div>
+                {{/unless}}
+
+                {{#each results as |bill|}}
+                    {{#condo-bill-list-item view-link='condo.condo-bill' bill=bill}}
+                        <strong>
+                            {{translate bill.lastUpdateOn.month}}
+                            {{bill.lastUpdateOn.dayOfMonth}}, {{bill.lastUpdateOn.year}}
+                        </strong> ({{translate bill.paymentStatus}})
+                    {{/condo-bill-list-item}}
+                {{/each}}
+            </div>
+        </div>
+    </div>
+</div> 
+
+{{#if moreResultsToLoad}}
+    <button class="btn btn-default" type="button" {{action "loadMoreResults"}}>
+        Cargar m&aacute;s
+    </button>
+{{/if}}
+
+
