@@ -8,6 +8,10 @@ export default Ember.Controller.extend({
         return this.get('session').currentUserRole === 'RESIDENT';
     }),
 
+    userHasSeveralCondos: Ember.computed('session.userHasSeveralCondos', function() {
+        return this.get('session').userHasSeveralCondos;
+    }),
+
     actions: {
         toggleMenu() {
             this.toggleProperty('offCanvasMenuOpen');

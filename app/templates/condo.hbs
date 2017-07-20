@@ -11,6 +11,12 @@
 
         <div class="col-xs-6 col-sm-3 sidebar-offcanvas">
           <div class="list-group">
+            {{#if userHasSeveralCondos}}
+              {{#link-to "condos" class="list-group-item"}}
+                <span class="glyphicon glyphicon-home"></span> Condominios
+              {{/link-to}}
+            {{/if}}
+            
             {{#link-to "condo.dashboard" model.condoId class="list-group-item"}}
               <span class="glyphicon glyphicon-dashboard"></span> Tablero
             {{/link-to}}
