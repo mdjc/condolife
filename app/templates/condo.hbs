@@ -17,19 +17,26 @@
 
             {{#if isResident}}
               {{#link-to "condo.due-bills" model.condoId class="list-group-item"}}
-                <span class="glyphicon glyphicon glyphicon glyphicon-list-alt"></span> Facturas por Pagar
+                <span class="glyphicon glyphicon-plus"></span> Facturas por Pagar
               {{/link-to}}
             {{/if}}
 
             {{#if (not isResident)}}
               {{#link-to "condo.unconfirmed-bills" model.condoId class="list-group-item"}}
-                <span class="glyphicon glyphicon glyphicon glyphicon-list-alt"></span> Facturas por Confirmar
+                <span class="glyphicon glyphicon-list-alt"></span> Facturas por Confirmar
+              {{/link-to}}
+            {{/if}}
+
+            {{#if (not isResident)}}
+              {{#link-to "condo.new-bill" model.condoId class="list-group-item"}}
+                <span class="glyphicon glyphicon-plus"></span> Nueva Factura
               {{/link-to}}
             {{/if}}
           
             {{#link-to "condo.bill-log" model.condoId class="list-group-item"}}
-              <span class="glyphicon glyphicon glyphicon glyphicon glyphicon-book"></span> Hist&oacute;rico de Facturas
+              <span class="glyphicon glyphicon-book"></span> Hist&oacute;rico de Facturas
             {{/link-to}}
+
           </div>
         </div><!--/.sidebar-offcanvas-->
     </div>

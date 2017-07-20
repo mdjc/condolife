@@ -21,7 +21,6 @@ export default Ember.Controller.extend({
         let currentCondo = this.model.condoId;
 
         if (this.lastCondoLoaded !== currentCondo) {
-            console.log('reset');
             this.set('from', '');
             this.set('to', '');
             this.set('pending', true);
@@ -84,7 +83,7 @@ export default Ember.Controller.extend({
             traditional: true,
             data : filters
         }).then(response => {
-            response['condo-bills'].forEach((item, index) => {
+            response['condo-bills'].forEach((item) => {
                 self.results.pushObject(item);
             });
            

@@ -1,2 +1,22 @@
 {{bill-summary-condo bill=model}}
 {{payment-info bill=model}}
+
+{{#if (not isResident)}}
+    {{#bs-button class="btn btn-danger" onClick=(action (mut deleteModalVisible) true)}}Eliminar{{/bs-button}}
+{{/if}}
+{{#if errorMsg}}
+    <div class="alert alert-danger">{{errorMsg}}</div>
+{{/if}}
+{{#if successMsg}}
+    <div class="alert alert-success">{{successMsg}}</div>
+{{/if}}
+
+{{#bs-modal open=deleteModalVisible title="Eliminar Factura" 
+    size="sm" onSubmit=(action "deleteBill") onHidden=(action (mut deleteModalVisible) false) as |modal|}}
+  {{#modal.header}}<h4 class="modal-title">Eliminar Factura</h4>{{/modal.header}}
+  {{#modal.body}}<p>Desea eliminar esta factura?</p>{{/modal.body}}
+  {{#modal.footer}}
+    {{#bs-button onClick=(action modal.close)}}Cancelar{{/bs-button}}
+    {{#bs-button class="btn btn-primary" onClick=(action modal.submit)}}Aceptar2{{/bs-button}}
+  {{/modal.footer}}
+{{/bs-modal}}

@@ -17,6 +17,7 @@ Router.map(function() {
     this.route('unconfirmed-bill', {path: 'unconfirmed-bills/:condo-bill_id'});
     this.route('bill-log');
     this.route('condo-bill', {path: 'bill-log/:condo-bill_id'});
+    this.route('new-bill');
   });
 
   this.route("notfound");

@@ -6,8 +6,17 @@ module.exports = {
   },
   extends: 'eslint:recommended',
   env: {
-    browser: true
+    browser: true,
+    "commonjs": true,
+    "es6": true,
+    "jquery": true
   },
-  rules: {
+
+  "plugins": [
+    "dollar-sign"
+  ],
+  
+  "rules": {
+    "dollar-sign/dollar-sign": [2, "ignoreProperties"]
   }
 };

@@ -9,8 +9,7 @@ export default Ember.Controller.extend({
 
     patchBill(paymentStatus, successMsg) {
         let self = this; 
-        let billId = this.get('model.id');
-        console.log('billId');  
+        let billId = this.get('model.id'); 
         self.get('ajax').patch(`bills/${billId}/payment`, {
             crossDomain: true,
             xhrFields: { withCredentials: true },
