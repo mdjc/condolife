@@ -1,17 +1,19 @@
 <div class="container">
     <h1 class="text-center">Iniciar Sesi&oacute;n</h1>
-    <form {{action 'login' on='submit'}}>
-      <div class="form-group">
-        <label for="username">Nombre de Usuario</label>
-        {{input id="username" type="text" class="form-control" placeholder="Nombre de usuario" value=username }}
+    <form class="form-login" {{action 'login' on='submit'}}>
+      <div class="row form-group">
+        <div class="col-xs-12">
+          {{input id="username" type="text" class="form-control" placeholder="Nombre de usuario" value=username }}
+        </div>
       </div>
-      <div class="form-group">
-        <label for="password">Contrase&ntilde;a</label>
-        {{input type="password" class="form-control" id="password" placeholder="Contraseña" value=password}}
+      <div class="row form-group">
+        <div class="col-xs-12">
+          {{input type="password" class="form-control" id="password" placeholder="Contraseña" value=password}}
+        </div>
       </div>
-      <button type="submit" class="btn btn-default">Iniciar Sesi&oacute;n</button>
+      <button type="submit" class="btn btn-primary btn-lg btn-block">Iniciar Sesi&oacute;n</button>
       {{#if errorMsg}}
         <div class="alert alert-danger">{{errorMsg}}</div>
       {{/if}}
-    </form>   
+    </form>
 </div>

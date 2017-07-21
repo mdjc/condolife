@@ -4,22 +4,15 @@
       <div class="navbar-header">
         {{#link-to "index" class="navbar-left"}}<img src="{{rootURL}}/logo-small.png">{{/link-to}}
        </div>
-      <ul class="nav nav-pills navbar-right">
+      <ul class="nav nav-pills navbar-right text-right">
       {{#if authenticated}}
         <li class="dropdown {{if dropDownOpen 'open'}}">
-          <a href="#" class="dropdown-toggle" 
-            {{action "toggleDropDown"}} role="button" aria-haspopup="true">
-                <span class="glyphicon glyphicon-user font-lg"></span>
-                <span class="caret"></span>
+          <a href="#" class="dropdown-toggle text-capitalize" {{action "toggleDropDown"}} role="button" aria-haspopup="true">
+           <span class="glyphicon glyphicon-user"></span>
+           {{username}} 
+           <span class="caret"></span>
           </a>
-          <ul class="dropdown-menu">
-            <li>
-              <a href="" class="navbar-btn text-capitalize" 
-              {{action "toggleDropDown"}}>{{username}}</a>
-            </li>
-            
-            <li role="separator" class="divider"></li>
-            
+          <ul class="dropdown-menu">                        
             <li>
               <a href="" class="navbar-btn" {{action "toggleDropDown"}} 
                 {{action "logout"}}>Cerrar Sesi&oacute;n</a>
