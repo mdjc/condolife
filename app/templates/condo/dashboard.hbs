@@ -1,17 +1,12 @@
-<div class="row">
-    <div class="col-xs-8">
-        <h3>Condominio {{model.c.name}}</h3>
-        <h4>Administrado por: {{model.c.manager.name}}</h4>
-    </div>
-    <div class="col-xs-4 text-right">
-        <p><strong>Apartamentos: </strong>{{model.cSts.stats.apartmentCount}}</p>
-        <p><strong>Residentes: </strong>{{model.cSts.stats.residentCount}}</p>
-    </div>
-</div>
-
+<h2>Tablero</h2>
 <div class="row">
     <div class="col-xs-12">
         <h4>Balance General: <strong> {{pesos model.cSts.stats.balance}}</strong></h4>
+    </div>
+
+    <div class="col-xs-12">
+        <p><strong>Apartamentos: </strong>{{model.cSts.stats.apartmentCount}}</p>
+        <p><strong>Residentes: </strong>{{model.cSts.stats.residentCount}}</p>
     </div>
 </div>
 

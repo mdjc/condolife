@@ -17,16 +17,11 @@ export default Ember.Route.extend({
         var to = dateUtils.toStr(endOfMonth);
 
         return RSVP.hash({
-           c: this.getCondo(condoId),
            cSts: this.getCondoStats(condoId),
            billSts: this.getBillsStats(condoId, from, to),
            os: this.getOutlayStats(condoId, from, to),
            outlays: this.getOutlays(from, to)
         });        
-    },
-
-    getCondo(id) {
-        return this.get('store').findRecord('condo', id);
     },
 
     getCondoStats(condoId) {

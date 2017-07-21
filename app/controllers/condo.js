@@ -9,7 +9,7 @@ export default Ember.Controller.extend({
     }),
 
     userHasSeveralCondos: Ember.computed('session.userHasSeveralCondos', function() {
-        return this.get('session').userHasSeveralCondos;
+        return this.get('session').userHasSeveralCondos === "true";
     }),
 
     actions: {
