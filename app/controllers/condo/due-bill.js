@@ -97,9 +97,8 @@ export default Ember.Controller.extend({
                 self.set("successMsg", "Su pago ha sido enviado. Nuevo estado: En espera de confirmación");
                 Ember.run.later(() => self.set("successMsg", ""), 5000);
                 Ember.run.later(() => self.transitionToRoute('condo.due-bills'), 5000);
-            }).catch(function() {
-                self.set("errorMsg", "Error inesperado ");
-                Ember.run.later(() => self.set("errorMsg", ""), 3000);
+            }).catch(error => {
+               self.handleError(error);
             });
         }
     }

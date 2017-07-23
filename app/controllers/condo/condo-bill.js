@@ -31,9 +31,8 @@ export default Ember.Controller.extend({
                     self.get('billLogController').send('search');
                     self.transitionToRoute('condo.bill-log');
                 }, 3000);
-            }).catch(function() {
-                self.set("errorMsg", "Error inesperado ");
-                Ember.run.later(() => self.set("errorMsg", ""), 3000);
+            }).catch(function(error) {
+               self.handleError(error);
             });
         }
     }

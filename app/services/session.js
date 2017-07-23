@@ -11,7 +11,7 @@ export default Ember.Service.extend({
         this.set('currentUsername', this.loadFromStorage("currentUsername"));
         this.set('currentUserRole', this.loadFromStorage("currentUserRole"));
         this.set('currentCondoId', "");
-        this.set('userHasSeveralCondos', this.loadFromStorage("userHasSeveralCondos"));
+        this.set('userHasSeveralCondos', this.loadFromStorage("userHasSeveralCondos") === 'true');
     },
 
     login(username, role) {
@@ -34,6 +34,10 @@ export default Ember.Service.extend({
         return this.get('currentUsername') !== "";
     },
 
+    getCurrentCondo() {
+        this.get('currentCondoId');
+    },
+
     setCurrentCondo(id) {
         this.set('currentCondoId', id);
     },
@@ -41,10 +45,6 @@ export default Ember.Service.extend({
     setUserHasSeveralCondos(value) {
         this.set('userHasSeveralCondos', value);
         localStorage.setItem('userHasSeveralCondos', value);
-    },
-
-    getCurrentCondo() {
-        this.get('currentCondoId');
     },
 
     loadFromStorage(field) {

@@ -1,5 +1,4 @@
 import Ember from 'ember';
-import {isUnauthorizedError} from 'ember-ajax/errors';
 
 export default Ember.Controller.extend({
     ajax: Ember.inject.service(),
@@ -33,13 +32,13 @@ export default Ember.Controller.extend({
                self.get("session").login(response.name, response.role);
                self.transitionToRoute('condos');
             }).catch(error => {
-                if (isUnauthorizedError(error)) {
+                if (this.isUnauthorized(error)) {
                     self.set("errorMsg", "invalid username/password");
-                } else {
-                    self.set("errorMsg", "unexpected error");
+                    Ember.run.later(() => self.set("errorMsg", ""), 3000);
+                    return;
                 }
 
-                Ember.run.later(() => self.set("errorMsg", ""), 3000);
+                this.handleError(error);
             });
         }
     }

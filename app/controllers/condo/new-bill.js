@@ -60,9 +60,14 @@ export default Ember.Controller.extend({
                 self.set("successMsg", "Factura creada");
                 Ember.run.later(() => self.set("successMsg", ""), 2500);
                 Ember.run.later(() => self.transitionToRoute('condo.dashboard'), 3000);
-            }).catch(function() {
-                self.set("errorMsg", "Error - Por favor válida el apartamento y monto insertado");
-                Ember.run.later(() => self.set("errorMsg", ""), 6000);
+            }).catch((error) => {
+                if (self.isBadRequest(error)) {
+                    self.set("errorMsg", "Error - Por favor válida el apartamento y monto insertado");
+                    Ember.run.later(() => self.set("errorMsg", ""), 6000);
+                    return;
+                }
+
+                self.handleError(error);
             });
         }
     }

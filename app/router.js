@@ -9,6 +9,7 @@ const Router = Ember.Router.extend({
 Router.map(function() {
   this.route('login');
   this.route('condos');
+  
   this.route('condo', {path: 'condos/:condoId'}, function() {
     this.route('dashboard');
     this.route('due-bills');

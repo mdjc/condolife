@@ -4,7 +4,7 @@
       <div class="navbar-header">
         {{#link-to "index" class="navbar-left"}}<img src="{{rootURL}}/logo-small.png">{{/link-to}}
        </div>
-      <ul class="nav nav-pills navbar-right text-right">
+      <ul class="nav nav-pills navbar-right">
       {{#if authenticated}}
         <li class="dropdown {{if dropDownOpen 'open'}}">
           <a href="#" class="dropdown-toggle text-capitalize" {{action "toggleDropDown"}} role="button" aria-haspopup="true">

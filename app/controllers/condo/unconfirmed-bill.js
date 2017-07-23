@@ -20,9 +20,8 @@ export default Ember.Controller.extend({
             self.set("successMsg", successMsg);
             Ember.run.later(() => self.set("successMsg", ""), 3000);
             Ember.run.later(() => self.transitionToRoute('condo.unconfirmed-bills'), 3000);
-        }).catch(function() {
-            self.set("errorMsg", "Error inesperado ");
-            Ember.run.later(() => self.set("errorMsg", ""), 3000);
+        }).catch((error) => {
+            self.handleError(error);
         });     
     },
 

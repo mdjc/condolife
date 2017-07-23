@@ -3,6 +3,7 @@ import Resolver from './resolver';
 import loadInitializers from 'ember-load-initializers';
 import config from './config/environment';
 import RSVP from 'rsvp';
+import AjaxErrorsMixin from './mixins/ajax-errors-support';
 
 let App;
 
@@ -14,6 +15,9 @@ App = Ember.Application.extend({
   Resolver
 });
 
+Ember.Route.reopen(AjaxErrorsMixin);
+Ember.Controller.reopen(AjaxErrorsMixin);
+
 RSVP.on('error', function(error) {
     if (error && error.message == "TransitionAborted") {
         return;
@@ -21,7 +25,6 @@ RSVP.on('error', function(error) {
 
     Ember.assert(error, false);
 });
-
 
 loadInitializers(App, config.modulePrefix);
 

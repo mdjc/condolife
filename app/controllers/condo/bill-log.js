@@ -88,6 +88,8 @@ export default Ember.Controller.extend({
             });
            
             self.set('offset', self.offset +  self.resultsSearchLimit);
+        }).catch(error => {
+            self.handleError(error);
         });
 
     },
@@ -114,6 +116,8 @@ export default Ember.Controller.extend({
                 self.set('results', []);
                 self.set('lastCondoLoaded', condoId);
                 self.loadResults();
+            }).catch(error => {
+                self.handleError(error);
             });
         },
 
