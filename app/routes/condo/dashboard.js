@@ -20,7 +20,7 @@ export default Ember.Route.extend({
            cSts: this.getCondoStats(condoId),
            billSts: this.getBillsStats(condoId, from, to),
            os: this.getOutlayStats(condoId, from, to),
-           outlays: this.getOutlays(from, to)
+           ol: this.getOutlays(condoId, from, to)
         });        
     },
 
@@ -50,11 +50,12 @@ export default Ember.Route.extend({
             });
     },
 
-    getOutlays(from, to) {
-        return this.get('store').query('outlay', 
-            {'from': from, 
-            'to': to, 
-            'limit':'10',
-            'order' : 'desc'});
+    getOutlays(condoId, from, to) {
+        return this.get('ajax')
+            .request(`/condos/${condoId}/outlays`, {
+                crossDomain: true,
+                xhrFields: { withCredentials: true },
+                data: {'from': from, 'to': to, 'limit':'10','order' : 'desc'}
+            });
     }
 });

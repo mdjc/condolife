@@ -4,7 +4,5 @@
         <span class="text-capitalize"> {{translate bill.paymentMethod}}</span>
     </p>
 
-    <button type="button" class="thumbnail" {{action "toggleResize"}}>
-        <img src="{{proofOfPaymentImg}}" class="btn img-responsive img-small {{if imgBig 'img-big'}}">
-    </button>
+    {{resizable-img img=proofOfPaymentImg}}
 {{/if}}

@@ -1,0 +1,14 @@
+<h2>Pago No. {{model.id}}</h2>
+<div class='summary'>
+    <p><strong>Categoria: </strong> {{translate model.category}}</p>
+    <p><strong>Monto: </strong>{{pesos model.amount}}</p>
+    <p><strong>Comentario: </strong>{{model.comment}}</p>
+    <p><strong>Suplidor: </strong>{{model.supplier}}</p>
+    <p>
+        <strong>Realizado en: </strong>{{translate model.createdOn.month}} 
+        {{model.createdOn.dayOfMonth}} de {{model.createdOn.year}}
+    </p>
+</div>
+
+{{resizable-img img=receiptImg}}
+

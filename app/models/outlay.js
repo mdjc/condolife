@@ -2,7 +2,8 @@ import DS from 'ember-data';
 
 export default DS.Model.extend({
     category: DS.attr(),
+    amount: DS.attr('number'),
     comment: DS.attr('string'),
-    createdOn: DS.attr(),
-    amount: DS.attr('number')
+    supplier: DS.attr('string'),
+    createdOn: DS.attr()
 });

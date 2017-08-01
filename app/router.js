@@ -14,12 +14,13 @@ Router.map(function() {
     this.route('dashboard');
     this.route('due-bills');
     this.route('due-bill', {path: 'due-bills/:bill_id'});
-    this.route('unconfirmed-bills', function() {});
+    this.route('unconfirmed-bills');
     this.route('unconfirmed-bill', {path: 'unconfirmed-bills/:condo-bill_id'});
     this.route('bill-log');
     this.route('condo-bill', {path: 'bill-log/:condo-bill_id'});
     this.route('new-bill');
     this.route('outlay-log');
+    this.route('outlay', {path: 'outlay-log/:outlay_id'});
   });
 
   this.route("notfound");

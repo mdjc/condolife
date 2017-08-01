@@ -20,7 +20,7 @@ export default Ember.Service.extend({
         map.set('SECURITY', 'Seguridad');
         map.set('MAINTAINANCE', 'Mantenimiento');
         map.set('CLEANING', 'Limpieza');
-        map.set('REPARATION', 'Reparacion');
+        map.set('REPARATION', 'Reparación');
         map.set('OTHER', 'Otro');
 
         this.addTokensMonth(map);

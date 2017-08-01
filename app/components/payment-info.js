@@ -1,8 +1,6 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-    imgBig: false,
-
     proofOfPaymentImg: Ember.computed(function() {
         let bill = this.bill;
         
@@ -11,11 +9,5 @@ export default Ember.Component.extend({
         }
 
         return '';
-    }),
-
-    actions: {
-        toggleResize() {
-          this.toggleProperty('imgBig');
-        }
-    }
+    })
 });
