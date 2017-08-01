@@ -35,7 +35,7 @@
 
             {{#if isResident}}
               {{#link-to "condo.due-bills" model.id class="list-group-item"}}
-                <span class="glyphicon glyphicon-plus"></span> Facturas por Pagar
+                <span class="glyphicon glyphicon-list-alt"></span> Facturas por Pagar
               {{/link-to}}
             {{/if}}
 
@@ -53,6 +53,10 @@
           
             {{#link-to "condo.bill-log" model.id class="list-group-item"}}
               <span class="glyphicon glyphicon-book"></span> Hist&oacute;rico de Facturas
+            {{/link-to}}
+
+            {{#link-to "condo.outlay-log" model.id class="list-group-item"}}
+              <span class="glyphicon glyphicon-credit-card"></span> Hist&oacute;rico de Gastos
             {{/link-to}}
           </div>
 

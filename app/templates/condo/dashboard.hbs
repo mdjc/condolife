@@ -43,27 +43,10 @@
     </div>
 </div>
 
-<div class="row">
-    <div class='col-xs-12'>    
-        <div class="panel panel-info">
-            <div class="panel-heading">Ultimos Gastos</div>  
-            <div class="panel-body">
-                {{#unless model.outlays.length}}
-                    <div class='summary'>
-                        No hay nuevos gastos este mes.
-                    </div>
-                {{/unless}}
-
-                {{#each model.outlays as |outlay|}}
-                    <div class='summary'>
-                        {{translate outlay.category}}, <strong>{{pesos outlay.amount}}</strong>
-                        en {{translate outlay.createdOn.month}} {{outlay.createdOn.dayOfMonth}},
-                        {{#if outlay.comment}}
-                            ({{outlay.comment}})
-                        {{/if}}
-                    </div>
-                {{/each}}
-            </div>
-        </div>
-    </div>
-</div> 
+{{#search-panel results=model.outlays heading='Gastos Recientes'
+ noResultsMsg='No hay nuevos gastos este mes.'}}
+    {{#each model.outlays as |outlay|}}
+        {{outlay-list-item outlay=outlay}}
+    {{/each}}
+{{/search-panel}}
+      

@@ -1,0 +1,40 @@
+<h2>Hist&oacute;rico de Gastos</h2>
+
+<div class="panel panel-default">
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-xs-6 col-sm-4">
+                <div class="form-group">
+                    <label for="from">Desde</label>
+                    {{input type="date" class="form-control" value=from id="from"}}
+                </div>
+            </div>
+            <div class="col-xs-6 col-sm-4">
+                <div class="form-group">
+                    <label for="tp">Hasta</label>
+                    {{input type="date" class="form-control" value=to id="to"}}
+                </div>
+            </div>
+        </div>
+
+        <button type="button" class="btn btn-default" {{action "search"}}>Buscar</button>
+
+        {{#if errorMsg}}
+            <div class="alert alert-danger">{{errorMsg}}</div>
+        {{/if}}
+  </div>
+</div>
+
+{{#search-panel results=results heading='Resultados'
+ noResultsMsg='No se encontraron resultados'}}
+    {{#each results as |outlay|}}
+         {{outlay-list-item outlay=outlay}}
+    {{/each}}
+{{/search-panel}}
+          
+
+{{#if moreResultsToLoad}}
+    <button class="btn btn-default" type="button" {{action "loadMoreResults"}}>
+        Cargar m&aacute;s
+    </button>
+{{/if}}

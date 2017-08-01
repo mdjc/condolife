@@ -1,0 +1,16 @@
+<div class="row">
+    <div class='col-xs-12'>    
+        <div class="panel panel-info">
+            {{#if heading}}
+                <div class="panel-heading">{{heading}}</div> 
+            {{/if}} 
+            <div class="panel-body">
+                {{#unless results.length}}
+                    <div class='summary'>{{noResultsMsg}}</div>
+                {{/unless}}
+
+                {{yield}}
+            </div>
+        </div>
+    </div>
+</div> 

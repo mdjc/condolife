@@ -19,6 +19,7 @@ Router.map(function() {
     this.route('bill-log');
     this.route('condo-bill', {path: 'bill-log/:condo-bill_id'});
     this.route('new-bill');
+    this.route('outlay-log');
   });
 
   this.route("notfound");
