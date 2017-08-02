@@ -2,7 +2,6 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({
     ajax: Ember.inject.service(),
-    session: Ember.inject.service(),
     paymentMethods: [
         {label: 'Efectivo', value: "CASH"},
         {label: 'Cheque', value: "CHECK"},

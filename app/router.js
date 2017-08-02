@@ -21,6 +21,7 @@ Router.map(function() {
     this.route('new-bill');
     this.route('outlay-log');
     this.route('outlay', {path: 'outlay-log/:outlay_id'});
+    this.route('new-outlay');
   });
 
   this.route("notfound");

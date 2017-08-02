@@ -55,6 +55,12 @@
               <span class="glyphicon glyphicon-book"></span> Hist&oacute;rico de Facturas
             {{/link-to}}
 
+            {{#if (not isResident)}}
+              {{#link-to "condo.new-outlay" model.id class="list-group-item"}}
+                <span class="glyphicon glyphicon-plus"></span> Nuevo Gasto
+              {{/link-to}}
+            {{/if}}
+
             {{#link-to "condo.outlay-log" model.id class="list-group-item"}}
               <span class="glyphicon glyphicon-credit-card"></span> Hist&oacute;rico de Gastos
             {{/link-to}}

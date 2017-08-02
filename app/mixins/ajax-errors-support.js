@@ -4,7 +4,7 @@ import {isNotFoundError, isUnauthorizedError, isBadRequestError} from 'ember-aja
 export default Ember.Mixin.create({
     session: Ember.inject.service(),
     
-    handleError(error) {        
+    handleError(error) { 
         let transitionFunction = this.transitionToRoute || this.transitionTo;
             
         if (this.isUnauthorized(error)) {
