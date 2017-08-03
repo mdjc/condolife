@@ -28,11 +28,15 @@ export default Ember.Controller.extend({
         let currentCondo = this.model.condoId;
 
         if (this.lastCondoLoaded !== currentCondo) {
-            this.set('from', '');
-            this.set('to', '');
-            this.set('errorMsg', ''); 
-            this.paginatedSearch.reset();
+            this.resetFields();
         }
+    },
+
+    resetFields() {
+        this.set('from', '');
+        this.set('to', '');
+        this.set('errorMsg', ''); 
+        this.paginatedSearch.reset();
     },
 
 
@@ -58,6 +62,10 @@ export default Ember.Controller.extend({
 
             self.paginatedSearch.loadResults(`/condos/${condoId}/outlays`,  self.filters())
                 .catch(error => self.handleError(error));
+        },
+
+        reset() {
+            this.resetFields();
         }
     },
 

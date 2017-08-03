@@ -2,6 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({
     ajax: Ember.inject.service(),
+    outlayLogController: Ember.inject.controller('condo/outlay-log'),
 
     categories: [
         {label: 'Mantenimiento', value: "MAINTAINANCE"},
@@ -96,6 +97,7 @@ export default Ember.Controller.extend({
                 self.set("successMsg", "Pago agregado.");
                 Ember.run.later(() => self.set("successMsg", ""), 3000);
                 Ember.run.later(() => self.transitionToRoute('condo.dashboard'), 3000);
+                self.get('outlayLogController').send('reset');
             }).catch(error => {
                self.handleError(error);
             });

@@ -3,6 +3,7 @@ import Ember from 'ember';
 export default Ember.Controller.extend({
     ajax: Ember.inject.service(),
     dateUtils: Ember.inject.service(),
+    billLogController: Ember.inject.controller('condo/bill-log'),
     
     apartment: '',
     dueAmount: '',
@@ -60,6 +61,7 @@ export default Ember.Controller.extend({
                 self.set("successMsg", "Factura creada");
                 Ember.run.later(() => self.set("successMsg", ""), 2500);
                 Ember.run.later(() => self.transitionToRoute('condo.dashboard'), 3000);
+                self.get('billLogController').send('reset');
             }).catch((error) => {
                 if (self.isBadRequest(error)) {
                     self.set("errorMsg", "Error - Por favor válida el apartamento y monto insertado");
