@@ -34,6 +34,10 @@ export default Ember.Controller.extend({
         },
 
         didSelectFiles(files) {
+            if (!files[0]) {
+                return;
+            }
+            
             let self = this;
             let file = files[0];
             self.set('proofOfPaymentPict', file);

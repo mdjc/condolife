@@ -1,40 +1,42 @@
 <h2>Nuevo Gasto</h2>
-<div class="form-group row">
-    <div class="col-xs-6 col-sm-4 col-md-3">
-        <label for="method">Categoria</label>
-        <select class="form-control" onchange={{action "selectCategory" value="target.value"}}>
-          {{#each categories as |category|}}
-            <option value={{category.value}}>
-            {{category.label}}</option>
-          {{/each}}
-        </select>
+<form {{action "sendOutlay" on="submit"}}>
+    <div class="form-group row">
+        <div class="col-xs-6 col-sm-4 col-md-3">
+            <label for="method">Categoria</label>
+            <select class="form-control" onchange={{action "selectCategory" value="target.value"}}>
+              {{#each categories as |category|}}
+                <option value={{category.value}}>
+                {{category.label}}</option>
+              {{/each}}
+            </select>
+        </div>
+        <div class="col-xs-6 col-sm-4 col-md-3">
+            <label for="amount">Monto</label>
+            {{input type="number" min='1' class="form-control" id="amount" placeholder="Monto" value=amount}}
+        </div>
+        <div class="col-xs-12 col-sm-4 col-md-4">
+            <label for="supplier">Suplidor</label>
+            {{input type="text" class="form-control" id="supplier" placeholder="Suplidor" value=supplier}}
+        </div>
     </div>
-    <div class="col-xs-6 col-sm-4 col-md-3">
-        <label for="amount">Monto</label>
-        {{input type="number" min='1' class="form-control" id="amount" placeholder="Monto" value=amount}}
+    <div class="form-group row">
+        <div class="col-xs-12 col-sm-10">
+            <label for="comment">Comentario</label>
+            {{input type="text" class="form-control" id="comment" placeholder="Comentario" maxlength="200" value=comment}}
+        </div>
     </div>
-    <div class="col-xs-12 col-sm-4 col-md-4">
-        <label for="supplier">Suplidor</label>
-        {{input type="text" class="form-control" id="supplier" placeholder="Suplidor" value=supplier}}
+    <div class="form-group row">
+        <div class="col-xs-12">
+            <img src="{{receiptImgSrc}}" class='img-responsive img-preview'>
+            {{#x-file-input name="files" multiple=false action=(action "didSelectFile") accept="image/*"}}
+                <label class="btn btn-default btn-outlined" 
+                        {{action "showLoadedImage"}}>Agregar Recibo
+                </label>
+            {{/x-file-input}}
+        </div>
     </div>
-</div>
-<div class="form-group row">
-    <div class="col-xs-12 col-sm-10">
-        <label for="comment">Comentario</label>
-        {{input type="text" class="form-control" id="comment" placeholder="Comentario" maxlength="200" value=comment}}
-    </div>
-</div>
-<div class="form-group row">
-    <div class="col-xs-12">
-        <img src="{{receiptImgSrc}}" class='img-responsive img-preview'>
-        {{#x-file-input name="files" multiple=false action=(action "didSelectFile") accept="image/*"}}
-            <label class="btn btn-default btn-outlined" 
-                    {{action "showLoadedImage"}}>Agregar Recibo
-            </label>
-        {{/x-file-input}}
-    </div>
-</div>
-<button class="btn btn-primary" type="button" {{action "sendOutlay"}}>Enviar</button>
+    <button class="btn btn-primary" type="submit">Enviar</button>
+</form>
 {{#if errorMsg}}
     <div class="alert alert-danger">{{errorMsg}}</div>
 {{/if}}

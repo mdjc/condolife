@@ -37,6 +37,10 @@ export default Ember.Controller.extend({
         },
 
         didSelectFile(files) {
+            if (!files[0]) {
+                return;
+            }
+
             let self = this;
             let file = files[0];
             self.set('receiptImg', file);

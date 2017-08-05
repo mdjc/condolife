@@ -1,29 +1,30 @@
 <h2>Hist&oacute;rico de Gastos</h2>
-
-<div class="panel panel-default">
-    <div class="panel-body">
-        <div class="row">
-            <div class="col-xs-6 col-sm-4">
-                <div class="form-group">
-                    <label for="from">Desde</label>
-                    {{input type="date" class="form-control" value=from id="from"}}
+<form {{action "search" on="submit"}}>
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-xs-6 col-sm-4">
+                    <div class="form-group">
+                        <label for="from">Desde</label>
+                        {{input type="date" class="form-control" value=from id="from"}}
+                    </div>
+                </div>
+                <div class="col-xs-6 col-sm-4">
+                    <div class="form-group">
+                        <label for="tp">Hasta</label>
+                        {{input type="date" class="form-control" value=to id="to"}}
+                    </div>
                 </div>
             </div>
-            <div class="col-xs-6 col-sm-4">
-                <div class="form-group">
-                    <label for="tp">Hasta</label>
-                    {{input type="date" class="form-control" value=to id="to"}}
-                </div>
-            </div>
-        </div>
 
-        <button type="button" class="btn btn-default" {{action "search"}}>Buscar</button>
+            <button type="submit" class="btn btn-default">Buscar</button>
+      </div>
+    </div>
+</form>
 
-        {{#if errorMsg}}
-            <div class="alert alert-danger">{{errorMsg}}</div>
-        {{/if}}
-  </div>
-</div>
+{{#if errorMsg}}
+    <div class="alert alert-danger">{{errorMsg}}</div>
+{{/if}}
 
 {{#search-panel results=results heading='Resultados'
  noResultsMsg='No se encontraron resultados'}}

@@ -1,30 +1,32 @@
 <h2>Nueva Factura</h2>
-<div class="form-group row">
-    <div class="col-xs-12 col-sm-4">
-        <label for="apartmentSelect">Apartamento</label>
-        <select id="apartmentSelect" class="form-control" 
-         onchange={{action "selectApartment" value="target.value"}}>
-          {{#each apartmentsWithResidents as |apartment|}}
-            <option value={{apartment.name}}>{{apartment.name}}</option>
-          {{/each}}
-        </select>
+<form {{action "send" on="submit"}}>
+    <div class="form-group row">
+        <div class="col-xs-12 col-sm-4">
+            <label for="apartmentSelect">Apartamento</label>
+            <select id="apartmentSelect" class="form-control" 
+             onchange={{action "selectApartment" value="target.value"}}>
+              {{#each apartmentsWithResidents as |apartment|}}
+                <option value={{apartment.name}}>{{apartment.name}}</option>
+              {{/each}}
+            </select>
+        </div>
+        <div class="col-xs-12 col-sm-4 col-md-3">
+            <label for="dueDate">Vence en</label>
+            {{input type="date" class="form-control" id="dueDate" value=dueDate min=minDate}}
+        </div>
+        <div class="col-xs-12 col-sm-4 col-md-3">
+            <label for="dueAmount">Monto</label>
+            {{input type="number" min='1' class="form-control" id="dueAmount" placeholder="Monto" value=dueAmount}}
+        </div>
     </div>
-    <div class="col-xs-12 col-sm-4 col-md-3">
-        <label for="dueDate">Vence en</label>
-        {{input type="date" class="form-control" id="dueDate" value=dueDate min=minDate}}
+    <div class="form-group row">
+        <div class="col-xs-10">
+            <label for="description">Concepto</label>
+            {{input type="text" class="form-control" id="description" placeholder="Concepto" maxlength="100" value=description}}
+        </div>
     </div>
-    <div class="col-xs-12 col-sm-4 col-md-3">
-        <label for="dueAmount">Monto</label>
-        {{input type="number" min='1' class="form-control" id="dueAmount" placeholder="Monto" value=dueAmount}}
-    </div>
-</div>
-<div class="form-group row">
-    <div class="col-xs-10">
-        <label for="description">Concepto</label>
-        {{input type="text" class="form-control" id="description" placeholder="Concepto" maxlength="100" value=description}}
-    </div>
-</div>
-<button class="btn btn-primary" {{action "send"}}>Enviar</button>
+    <button type="submit" class="btn btn-primary" {{action "send"}}>Enviar</button>
+</form>
 {{#if errorMsg}}
     <div class="alert alert-danger">{{errorMsg}}</div>
 {{/if}}
