@@ -2,6 +2,9 @@
 {{#bill-summary bill=bill}}
     <p>
         <strong>Apartamento (Residente):</strong>
-        <span class="text-capitalize"> {{bill.apartment.name}}</span>
+        <span class="text-capitalize"> 
+            {{bill.apartment.name}} 
+            ({{bill.apartment.resident.name}})
+        </span>
     </p>
 {{/bill-summary}}

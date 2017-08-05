@@ -12,6 +12,16 @@ export default Ember.Controller.extend({
     errorMsg: '',
     successMsg: '',
 
+    apartmentsWithResidents: Ember.computed('model.apts.apartments', function() {
+        let apartments = this.get('model').apts.apartments
+            .filter(function(item) {
+                return item.resident !== null;
+            });
+
+        this.set('apartment', apartments[0].name);
+        return apartments;
+    }),
+
     minDate: Ember.computed(function() {
         let today = new Date();
         return this.get('dateUtils').toStr(today);
@@ -27,10 +37,14 @@ export default Ember.Controller.extend({
     },
 
     actions: {
+        selectApartment(apartment) {
+            this.set('apartment', apartment);
+        },
+
         send() {
             let self = this;
 
-            if (!self.apartment || !self.dueAmount || !self.dueDate || !self.description) {
+            if (!self.dueAmount || !self.dueDate || !self.description) {
                 self.set("errorMsg", "Por favor llena todos los campos");
                 Ember.run.later(() => self.set("errorMsg", ""), 4000);
                 return;
@@ -64,7 +78,7 @@ export default Ember.Controller.extend({
                 self.get('billLogController').send('reset');
             }).catch((error) => {
                 if (self.isBadRequest(error)) {
-                    self.set("errorMsg", "Error - Por favor válida el apartamento y monto insertado");
+                    self.set("errorMsg", "Error - Por favor válida el monto insertado");
                     Ember.run.later(() => self.set("errorMsg", ""), 6000);
                     return;
                 }

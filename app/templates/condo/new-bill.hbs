@@ -1,8 +1,13 @@
 <h2>Nueva Factura</h2>
 <div class="form-group row">
     <div class="col-xs-12 col-sm-4">
-        <label for="apartment">Apartamento</label>
-        {{input type="text" class="form-control" id="apartment" placeholder="Apartamento" value=apartment}}
+        <label for="apartmentSelect">Apartamento</label>
+        <select id="apartmentSelect" class="form-control" 
+         onchange={{action "selectApartment" value="target.value"}}>
+          {{#each apartmentsWithResidents as |apartment|}}
+            <option value={{apartment.name}}>{{apartment.name}}</option>
+          {{/each}}
+        </select>
     </div>
     <div class="col-xs-12 col-sm-4 col-md-3">
         <label for="dueDate">Vence en</label>
