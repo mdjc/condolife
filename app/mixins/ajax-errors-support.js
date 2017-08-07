@@ -6,6 +6,7 @@ export default Ember.Mixin.create({
     
     handleError(error) { 
         let transitionFunction = this.transitionToRoute || this.transitionTo;
+        console.log(error);
             
         if (this.isUnauthorized(error)) {
             this.get('session').logout();

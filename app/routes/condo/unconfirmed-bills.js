@@ -1,7 +1,17 @@
 import Ember from 'ember';
+import RSVP from 'rsvp';
 
 export default Ember.Route.extend({
-    model() { 
-        return this.get('store').query('condo-bill', {paymentStatus: ['PAID_AWAITING_CONFIRMATION']});
+    condoId: '',
+
+    model(params, transition) {
+        return RSVP.hash({
+            condoId: transition.params["condo"].condoId
+        });
+    },
+
+    setupController: function(controller, model) {
+        this._super(controller, model);
+        controller.load();
     }
 });
