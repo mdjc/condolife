@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import Env from 'condolife/config/environment';
 
 export default Ember.Route.extend({
     session: Ember.inject.service(),
@@ -14,7 +15,7 @@ export default Ember.Route.extend({
 
         if (model.paymentStatus === 'REJECTED') {
             controller.set('proofOfPaymentImgSrc', 
-            `http://localhost:8080/condoBills/${model.id}/payment-img`);
+            `${Env.RestAPIHost}/condoBills/${model.id}/payment-img`);
         }
 
         if (model.paymentMethod) {

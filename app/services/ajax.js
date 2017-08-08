@@ -1,5 +1,6 @@
 import AjaxService from 'ember-ajax/services/ajax';
+import Env from 'condolife/config/environment';
 
 export default AjaxService.extend({
-    host: 'http://localhost:8080'
+    host: Env.RestAPIHost
 });

@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import Env from 'condolife/config/environment';
 
 export default Ember.Controller.extend({
     session: Ember.inject.service(),
@@ -12,7 +13,7 @@ export default Ember.Controller.extend({
 
     receiptImg: Ember.computed('model', function() {
         let outlay = this.get('model');
-        return `http://localhost:8080/outlays/${outlay.id}/receipt-img`;
+        return `${Env.RestAPIHost}/outlays/${outlay.id}/receipt-img`;
     }),
 
     actions: {
