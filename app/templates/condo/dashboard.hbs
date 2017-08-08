@@ -1,12 +1,12 @@
 <h2>Tablero</h2>
 <div class="row">
     <div class="col-xs-12">
-        <h4>Balance General: <strong> {{pesos model.cSts.stats.balance}}</strong></h4>
+        <h4>Balance General: <strong> {{pesos model.condoStats.balance}}</strong></h4>
     </div>
 
     <div class="col-xs-12">
-        <p><strong>Apartamentos: </strong>{{model.cSts.stats.apartmentCount}}</p>
-        <p><strong>Residentes: </strong>{{model.cSts.stats.residentCount}}</p>
+        <p><strong>Apartamentos: </strong>{{model.condoStats.apartmentCount}}</p>
+        <p><strong>Residentes: </strong>{{model.condoStats.residentCount}}</p>
     </div>
 </div>
 
@@ -18,34 +18,34 @@
     </div>
     <div class="row">
         <div class="col-xs-12 col-sm-6 col-md-4">
-            <strong>Recaudados:</strong> {{pesos model.billSts.stats.paidConfirmedBillTotal}}
-            en {{model.billSts.stats.paidConfirmedBillCount}} factura(s)           
+            <strong>Recaudados:</strong> {{pesos model.billStats.paidConfirmedBillTotal}}
+            en {{model.billStats.paidConfirmedBillCount}} factura(s)           
         </div>
         <div class="col-xs-12 col-sm-6 col-md-4">
-            <strong>Gastados: </strong>{{pesos model.os.stats.amount}}
+            <strong>Gastados: </strong>{{pesos model.outlayStats.amount}}
         </div>
 
         <div class="col-xs-12 col-sm-6 col-md-4">
-            <strong>Facturas pendientes: </strong>{{model.billSts.stats.pendingBillCount}}
+            <strong>Facturas pendientes: </strong>{{model.billStats.pendingBillCount}}
         </div>
     </div>
     <div class="row">
         <div class="col-xs-12 col-sm-6 col-md-4">            
             <strong>Facturas por confirmar: </strong>
             <span class="badge">
-                {{model.billSts.stats.paidAwaitingConfirmationBillCount}}
+                {{model.billStats.paidAwaitingConfirmationBillCount}}
             </span>
         </div>
         <div class="col-xs-12 col-sm-6 col-md-4">
             <strong>Facturas rechazadas: </strong>
-            <span class="badge">{{model.billSts.stats.rejectedBillCount}}</span>
+            <span class="badge">{{model.billStats.rejectedBillCount}}</span>
         </div>
     </div>
 </div>
 
-{{#search-panel results=model.ol.outlays heading='Gastos Recientes'
+{{#search-panel results=model.outlays heading='Gastos Recientes'
  noResultsMsg='No hay nuevos gastos este mes.'}}
-    {{#each model.ol.outlays as |outlay|}}
+    {{#each model.outlays as |outlay|}}
         {{outlay-list-item outlay=outlay}}
     {{/each}}
 {{/search-panel}}

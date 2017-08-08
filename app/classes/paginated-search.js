@@ -2,7 +2,6 @@ import Ember from 'ember';
 
 const PaginatedSearch = Ember.Object.extend({
     resultsSearchLimit: 20,
-    resultsObjectName: '',
     results: [],
     total: 0,
     offset: 0,
@@ -18,13 +17,9 @@ const PaginatedSearch = Ember.Object.extend({
         let self = this;
         self.reset();
 
-        return self.get('ajax').request(`${url}/meta`, {
-                    crossDomain: true,
-                    xhrFields: { withCredentials: true },
-                    traditional: true,
-                    data : filters
-                }).then(response => {
-                    self.set('total', response.meta.total);
+        return self.get('ajaxHelper').requestJson(`${url}/meta`, filters)
+                .then(response => {
+                    self.set('total', response.total);
                     self.set('results', []);
                     self.loadResults(url, filters);
                 });
@@ -35,18 +30,14 @@ const PaginatedSearch = Ember.Object.extend({
         filters.limit = self.resultsSearchLimit;
         filters.offset = self.offset;
 
-        return self.get('ajax').request(url, {
-                crossDomain: true,
-                xhrFields: { withCredentials: true },
-                traditional: true,
-                data : filters
-            }).then(response => {
-                response[self.get('resultsObjectName')].forEach((item) => {
-                    self.results.pushObject(item);
+        return self.get('ajaxHelper').requestJson(url, filters)
+                .then(response => {
+                    response.forEach((item) => {
+                        self.results.pushObject(item);
+                    });
+                   
+                    self.set('offset', self.offset +  self.resultsSearchLimit);
                 });
-               
-                self.set('offset', self.offset +  self.resultsSearchLimit);
-            });
     }
 });
 

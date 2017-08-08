@@ -1,7 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
-    ajax: Ember.inject.service(),
+    ajaxHelper: Ember.inject.service(),
     dateUtils: Ember.inject.service(),
     billLogController: Ember.inject.controller('condo/bill-log'),
     
@@ -12,8 +12,8 @@ export default Ember.Controller.extend({
     errorMsg: '',
     successMsg: '',
 
-    apartmentsWithResidents: Ember.computed('model.apts.apartments', function() {
-        let apartments = this.get('model').apts.apartments
+    apartmentsWithResidents: Ember.computed('model.apartments', function() {
+        let apartments = this.get('model').apartments
             .filter(function(item) {
                 return item.resident !== null;
             });
@@ -65,26 +65,21 @@ export default Ember.Controller.extend({
 
             let condoId = this.get('model').condoId;
 
-            self.get('ajax').post(`condos/${condoId}/condoBills`, {
-                crossDomain: true,
-                xhrFields: { withCredentials: true },
-                data: bill,
-                contentType: 'application/json',
-                dataType: "text"
-            }).then(function() {
-                self.set("successMsg", "Factura creada");
-                Ember.run.later(() => self.set("successMsg", ""), 2500);
-                Ember.run.later(() => self.transitionToRoute('condo.dashboard'), 3000);
-                self.get('billLogController').send('reset');
-            }).catch((error) => {
-                if (self.isBadRequest(error)) {
-                    self.set("errorMsg", "Error - Por favor válida el monto insertado");
-                    Ember.run.later(() => self.set("errorMsg", ""), 6000);
-                    return;
-                }
+            self.get('ajaxHelper').post(`condos/${condoId}/condoBills`, 'application/json', "text", bill)
+                .then(function() {
+                    self.set("successMsg", "Factura creada");
+                    Ember.run.later(() => self.set("successMsg", ""), 2500);
+                    Ember.run.later(() => self.transitionToRoute('condo.dashboard'), 3000);
+                    self.get('billLogController').send('reset');
+                }).catch((error) => {
+                    if (self.isBadRequest(error)) {
+                        self.set("errorMsg", "Error - Por favor válida el monto insertado");
+                        Ember.run.later(() => self.set("errorMsg", ""), 6000);
+                        return;
+                    }
 
-                self.handleError(error);
-            });
+                    self.handleError(error);
+                });
         }
     }
 });

@@ -3,14 +3,12 @@ import Ember from 'ember';
 export default Ember.Service.extend({
     currentUsername: null,
     currentUserRole: null,
-    currentCondoId: null,
     userHasSeveralCondos: false,
 
     init() {
         this._super(...arguments);
         this.set('currentUsername', this.loadFromStorage("currentUsername"));
         this.set('currentUserRole', this.loadFromStorage("currentUserRole"));
-        this.set('currentCondoId', "");
         this.set('userHasSeveralCondos', this.loadFromStorage("userHasSeveralCondos") === 'true');
     },
 
@@ -32,14 +30,6 @@ export default Ember.Service.extend({
 
     userAuthenticated() {
         return this.get('currentUsername') !== "";
-    },
-
-    getCurrentCondo() {
-        this.get('currentCondoId');
-    },
-
-    setCurrentCondo(id) {
-        this.set('currentCondoId', id);
     },
 
     setUserHasSeveralCondos(value) {

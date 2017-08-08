@@ -1,7 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
-    ajax: Ember.inject.service(),
+    ajaxHelper: Ember.inject.service(),
     paymentMethods: [
         {label: 'Efectivo', value: "CASH"},
         {label: 'Cheque', value: "CHECK"},
@@ -89,20 +89,14 @@ export default Ember.Controller.extend({
                 formData.append('proofOfPaymentPict', this.get('proofOfPaymentPict'));
             }
 
-            self.get('ajax').put(`bills/${billId}/payment`, {
-                crossDomain: true,
-                xhrFields: { withCredentials: true },
-                processData: false,
-                contentType: false,
-                data: formData,
-                dataType: "text"
-            }).then(() => {
-                self.set("successMsg", "Su pago ha sido enviado. Nuevo estado: En espera de confirmación");
-                Ember.run.later(() => self.set("successMsg", ""), 5000);
-                Ember.run.later(() => self.transitionToRoute('condo.due-bills'), 5000);
-            }).catch(error => {
-               self.handleError(error);
-            });
+            self.get('ajaxHelper').put(`bills/${billId}/payment`, false, "text", formData, false)
+                .then(() => {
+                    self.set("successMsg", "Su pago ha sido enviado. Nuevo estado: En espera de confirmación");
+                    Ember.run.later(() => self.set("successMsg", ""), 5000);
+                    Ember.run.later(() => self.transitionToRoute('condo.due-bills'), 5000);
+                }).catch(error => {
+                   self.handleError(error);
+                });
         }
     }
 });

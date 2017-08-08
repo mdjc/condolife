@@ -2,7 +2,7 @@ import Ember from 'ember';
 import PaginatedSearch from 'condolife/classes/paginated-search';
 
 export default Ember.Controller.extend({
-    ajax: Ember.inject.service(),
+    ajaxHelper: Ember.inject.service(),
     from: '',
     to: '',
     errorMsg: '',
@@ -11,8 +11,7 @@ export default Ember.Controller.extend({
 
     init() {
         this.paginatedSearch = PaginatedSearch.create({
-            resultsObjectName: 'outlays', 
-            ajax: this.get('ajax')
+            ajaxHelper: this.get('ajaxHelper')
         });
     },
 

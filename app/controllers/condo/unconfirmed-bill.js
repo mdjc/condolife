@@ -1,7 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
-    ajax: Ember.inject.service(),
+    ajaxHelper: Ember.inject.service(),
     proofOfPaymentImg: '',
     imgBig: false,
     errorMsg: '',
@@ -10,19 +10,14 @@ export default Ember.Controller.extend({
     patchBill(paymentStatus, successMsg) {
         let self = this; 
         let billId = this.get('model.id'); 
-        self.get('ajax').patch(`bills/${billId}/payment`, {
-            crossDomain: true,
-            xhrFields: { withCredentials: true },
-            data: paymentStatus,
-            contentType: 'text/plain',
-            dataType: "text"
-        }).then(() => {
-            self.set("successMsg", successMsg);
-            Ember.run.later(() => self.set("successMsg", ""), 3000);
-            Ember.run.later(() => self.transitionToRoute('condo.unconfirmed-bills'), 3000);
-        }).catch((error) => {
-            self.handleError(error);
-        });     
+        self.get('ajaxHelper').patch(`bills/${billId}/payment`, 'text/plain', "text", paymentStatus)
+            .then(() => {
+                self.set("successMsg", successMsg);
+                Ember.run.later(() => self.set("successMsg", ""), 3000);
+                Ember.run.later(() => self.transitionToRoute('condo.unconfirmed-bills'), 3000);
+            }).catch((error) => {
+                self.handleError(error);
+            });     
     },
 
     actions: {

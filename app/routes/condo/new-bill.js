@@ -2,14 +2,14 @@ import Ember from 'ember';
 import RSVP from 'rsvp';
 
 export default Ember.Route.extend({
-    ajax: Ember.inject.service(),
+    ajaxHelper: Ember.inject.service(),
     
     model(params, transition) {
         let condoId = transition.params["condo"].condoId;
         
         return RSVP.hash({
             condoId: condoId,
-            apts: this.apartments(condoId)
+            apartments: this.apartments(condoId)
         });
     },
 
@@ -18,10 +18,6 @@ export default Ember.Route.extend({
     },
 
     apartments(condoId) {
-        return this.get('ajax')
-            .request(`/condos/${condoId}/apartments`, {
-                crossDomain: true,
-                xhrFields: { withCredentials: true }
-            });
+        return this.get('ajaxHelper').request(`/condos/${condoId}/apartments`);
     }
 });

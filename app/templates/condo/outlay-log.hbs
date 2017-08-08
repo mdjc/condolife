@@ -30,7 +30,7 @@
  noResultsMsg='No se encontraron resultados'}}
     {{#each results as |outlay|}}
         {{#outlay-list-item outlay=outlay}}
-             {{#link-to "condo.outlay" outlay class="btn btn-default"}}Ver{{/link-to}}
+             {{#link-to "condo.outlay" outlay.id class="btn btn-default"}}Ver{{/link-to}}
         {{/outlay-list-item}}
     {{/each}}
 {{/search-panel}}

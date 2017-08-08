@@ -1,7 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
-    ajax: Ember.inject.service(),
+    ajaxHelper: Ember.inject.service(),
     outlayLogController: Ember.inject.controller('condo/outlay-log'),
 
     categories: [
@@ -12,7 +12,6 @@ export default Ember.Controller.extend({
         {label: 'Otro', value: "OTHER"}
     ],
     pictValidExtensions: ['png', 'gif', 'jpg'],
-
     category: 'MAINTAINANCE',
     amount: '',
     supplier: '',
@@ -90,21 +89,15 @@ export default Ember.Controller.extend({
             formData.append('comment', this.get('comment')); 
             formData.append('receiptImg', this.get('receiptImg'));   
 
-            self.get('ajax').post(`condos/${condoId}/outlays`, {
-                crossDomain: true,
-                xhrFields: { withCredentials: true },
-                processData: false,
-                contentType: false,
-                data: formData,
-                dataType: "text"
-            }).then(() => {
-                self.set("successMsg", "Pago agregado.");
-                Ember.run.later(() => self.set("successMsg", ""), 3000);
-                Ember.run.later(() => self.transitionToRoute('condo.dashboard'), 3000);
-                self.get('outlayLogController').send('reset');
-            }).catch(error => {
-               self.handleError(error);
-            });
+            self.get('ajaxHelper').post(`condos/${condoId}/outlays`, false, "text", formData, false)
+                .then(() => {
+                    self.set("successMsg", "Gasto agregado.");
+                    Ember.run.later(() => self.set("successMsg", ""), 3000);
+                    Ember.run.later(() => self.transitionToRoute('condo.dashboard'), 3000);
+                    self.get('outlayLogController').send('reset');
+                }).catch(error => {
+                   self.handleError(error);
+                });
         }
     }
 });

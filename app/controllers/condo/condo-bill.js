@@ -2,7 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({
     session: Ember.inject.service(),
-    ajax: Ember.inject.service(),
+    ajaxHelper: Ember.inject.service(),
     billLogController: Ember.inject.controller('condo/bill-log'),
     
     deleteModalVisible: false,
@@ -19,17 +19,13 @@ export default Ember.Controller.extend({
             self.set('deleteModalVisible', false);
             let billId = this.get('model').id;
 
-            self.get('ajax').delete(`bills/${billId}`, {
-                crossDomain: true,
-                xhrFields: { withCredentials: true },
-                contentType: 'text/plain',
-                dataType: "text"
-            }).then(() => {
-                self.set("successMsg", "Factura Eliminada");
-                Ember.run.later(() => self.set("successMsg", ""), 3000);
-                Ember.run.later(() => {
-                    self.get('billLogController').send('search');
-                    self.transitionToRoute('condo.bill-log');
+            self.get('ajaxHelper').delete(`bills/${billId}`,'text/plain',"text")
+                .then(() => {
+                    self.set("successMsg", "Factura Eliminada");
+                    Ember.run.later(() => self.set("successMsg", ""), 3000);
+                    Ember.run.later(() => {
+                        self.get('billLogController').send('search');
+                        self.transitionToRoute('condo.bill-log');
                 }, 3000);
             }).catch(function(error) {
                self.handleError(error);

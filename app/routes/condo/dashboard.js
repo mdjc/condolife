@@ -2,7 +2,7 @@ import Ember from 'ember';
 import RSVP from 'rsvp';
 
 export default Ember.Route.extend({
-    ajax: Ember.inject.service(),
+    ajaxHelper: Ember.inject.service(),
     session: Ember.inject.service(),
     dateUtils: Ember.inject.service(),
 
@@ -17,45 +17,29 @@ export default Ember.Route.extend({
         var to = dateUtils.toStr(endOfMonth);
 
         return RSVP.hash({
-           cSts: this.getCondoStats(condoId),
-           billSts: this.getBillsStats(condoId, from, to),
-           os: this.getOutlayStats(condoId, from, to),
-           ol: this.getOutlays(condoId, from, to)
+           condoStats: this.getCondoStats(condoId),
+           billStats: this.getBillsStats(condoId, from, to),
+           outlayStats: this.getOutlayStats(condoId, from, to),
+           outlays: this.getOutlays(condoId, from, to)
         });        
     },
 
     getCondoStats(condoId) {
-        return this.get('ajax')
-            .request(`/condos/${condoId}/stats`, {
-                crossDomain: true,
-                xhrFields: { withCredentials: true }
-            });
+        return this.get('ajaxHelper').requestJson(`/condos/${condoId}/stats`);
     },
 
     getBillsStats(condoId, from, to) {
-         return this.get('ajax')
-            .request(`/condos/${condoId}/bills/stats`, {
-                crossDomain: true,
-                xhrFields: { withCredentials: true },
-                data: {'from': from, 'to': to}
-            });
+        return this.get('ajaxHelper').requestJson(`/condos/${condoId}/bills/stats`,
+            {'from': from, 'to': to});
     },
 
     getOutlayStats(condoId, from, to) {
-         return this.get('ajax')
-            .request(`/condos/${condoId}/outlays/stats`, {
-                crossDomain: true,
-                xhrFields: { withCredentials: true },
-                data: {'from': from, 'to': to}
-            });
+         return this.get('ajaxHelper')
+            .requestJson(`/condos/${condoId}/outlays/stats`, {'from': from, 'to': to});
     },
 
     getOutlays(condoId, from, to) {
-        return this.get('ajax')
-            .request(`/condos/${condoId}/outlays`, {
-                crossDomain: true,
-                xhrFields: { withCredentials: true },
-                data: {'from': from, 'to': to, 'limit':'10','order' : 'desc'}
-            });
+        return this.get('ajaxHelper').requestJson(`/condos/${condoId}/outlays`,
+                {'from': from, 'to': to, 'limit':'10','order' : 'desc'});
     }
 });
