@@ -18,6 +18,6 @@ export default Ember.Route.extend({
     },
 
     apartments(condoId) {
-        return this.get('ajaxHelper').request(`/condos/${condoId}/apartments`);
+        return this.get('ajaxHelper').request(`condos/${condoId}/apartments`);
     }
 });

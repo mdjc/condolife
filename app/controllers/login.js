@@ -26,7 +26,7 @@ export default Ember.Controller.extend({
                     btoa(self.get('username') + ":" + self.get('password')) 
             };
             
-            self.get('ajaxHelper').requestWithHeaders('post', '/login', headers)
+            self.get('ajaxHelper').requestWithHeaders('post', 'login', headers)
                 .then(response => {
                    self.get("session").login(response.name, response.role);
                    self.transitionToRoute('condos');

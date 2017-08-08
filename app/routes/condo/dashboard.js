@@ -25,21 +25,21 @@ export default Ember.Route.extend({
     },
 
     getCondoStats(condoId) {
-        return this.get('ajaxHelper').requestJson(`/condos/${condoId}/stats`);
+        return this.get('ajaxHelper').requestJson(`condos/${condoId}/stats`);
     },
 
     getBillsStats(condoId, from, to) {
-        return this.get('ajaxHelper').requestJson(`/condos/${condoId}/bills/stats`,
+        return this.get('ajaxHelper').requestJson(`condos/${condoId}/condoBills/stats`,
             {'from': from, 'to': to});
     },
 
     getOutlayStats(condoId, from, to) {
          return this.get('ajaxHelper')
-            .requestJson(`/condos/${condoId}/outlays/stats`, {'from': from, 'to': to});
+            .requestJson(`condos/${condoId}/outlays/stats`, {'from': from, 'to': to});
     },
 
     getOutlays(condoId, from, to) {
-        return this.get('ajaxHelper').requestJson(`/condos/${condoId}/outlays`,
+        return this.get('ajaxHelper').requestJson(`condos/${condoId}/outlays`,
                 {'from': from, 'to': to, 'limit':'10','order' : 'desc'});
     }
 });

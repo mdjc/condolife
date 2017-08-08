@@ -5,6 +5,6 @@ export default Ember.Route.extend({
 
     model(params) {    
         let condoId = params.condoId;
-        return this.get('ajaxHelper').requestJson(`/condos/${condoId}`);
+        return this.get('ajaxHelper').requestJson(`condos/${condoId}`);
     }
 });

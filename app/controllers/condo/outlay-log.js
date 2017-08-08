@@ -51,7 +51,7 @@ export default Ember.Controller.extend({
                 return;
             }
 
-            self.paginatedSearch.loadMetaAndResults(`/condos/${condoId}/outlays`, self.filters())
+            self.paginatedSearch.loadMetaAndResults(`condos/${condoId}/outlays`, self.filters())
                 .catch(error => self.handleError(error));
         },
 
@@ -59,7 +59,7 @@ export default Ember.Controller.extend({
             let self = this;
             let condoId = self.get('model').condoId;
 
-            self.paginatedSearch.loadResults(`/condos/${condoId}/outlays`,  self.filters())
+            self.paginatedSearch.loadResults(`condos/${condoId}/outlays`,  self.filters())
                 .catch(error => self.handleError(error));
         },
 

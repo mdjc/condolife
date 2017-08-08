@@ -19,7 +19,7 @@ export default Ember.Controller.extend({
             self.set('deleteModalVisible', false);
             let billId = this.get('model').id;
 
-            self.get('ajaxHelper').delete(`bills/${billId}`,'text/plain',"text")
+            self.get('ajaxHelper').delete(`condoBills/${billId}`,'text/plain',"text")
                 .then(() => {
                     self.set("successMsg", "Factura Eliminada");
                     Ember.run.later(() => self.set("successMsg", ""), 3000);

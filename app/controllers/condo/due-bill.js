@@ -89,7 +89,7 @@ export default Ember.Controller.extend({
                 formData.append('proofOfPaymentPict', this.get('proofOfPaymentPict'));
             }
 
-            self.get('ajaxHelper').put(`bills/${billId}/payment`, false, "text", formData, false)
+            self.get('ajaxHelper').put(`condoBills/${billId}/payment`, false, "text", formData, false)
                 .then(() => {
                     self.set("successMsg", "Su pago ha sido enviado. Nuevo estado: En espera de confirmación");
                     Ember.run.later(() => self.set("successMsg", ""), 5000);

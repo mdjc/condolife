@@ -7,7 +7,7 @@ export default Ember.Controller.extend({
     actions: {
         onLogout() {
             let self = this;
-            self.get('ajaxHelper').post('/logout', 'text/plain', "text")
+            self.get('ajaxHelper').post('logout', 'text/plain', "text")
                 .then(() => {
                     self.get('session').logout(); 
                     self.transitionToRoute('index');

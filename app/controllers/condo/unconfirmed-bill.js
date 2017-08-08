@@ -10,7 +10,7 @@ export default Ember.Controller.extend({
     patchBill(paymentStatus, successMsg) {
         let self = this; 
         let billId = this.get('model.id'); 
-        self.get('ajaxHelper').patch(`bills/${billId}/payment`, 'text/plain', "text", paymentStatus)
+        self.get('ajaxHelper').patch(`condoBills/${billId}/payment`, 'text/plain', "text", paymentStatus)
             .then(() => {
                 self.set("successMsg", successMsg);
                 Ember.run.later(() => self.set("successMsg", ""), 3000);

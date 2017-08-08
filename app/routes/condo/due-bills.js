@@ -8,7 +8,7 @@ export default Ember.Route.extend({
         let condoId = transition.params["condo"].condoId;
         let username = this.get('session').currentUsername;
 
-        return this.get('ajaxHelper').requestJson(`/condos/${condoId}/residents/${username}/bills`, 
+        return this.get('ajaxHelper').requestJson(`condos/${condoId}/residents/${username}/bills`, 
             {paymentStatus: ['PENDING', 'REJECTED']});
     }
 });

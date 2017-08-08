@@ -5,7 +5,7 @@ export default Ember.Route.extend({
     ajaxHelper: Ember.inject.service(),
 
     model() {
-         return this.get('ajaxHelper').requestJson('/condos');
+         return this.get('ajaxHelper').requestJson('condos');
     },
 
     afterModel(model) {

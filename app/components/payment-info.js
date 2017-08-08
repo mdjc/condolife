@@ -5,7 +5,7 @@ export default Ember.Component.extend({
         let bill = this.bill;
         
         if (bill.paymentStatus !== 'PENDING') {
-            return `http://localhost:8080/bills/${bill.id}/payment-img`;
+            return `http://localhost:8080/condoBills/${bill.id}/payment-img`;
         }
 
         return '';

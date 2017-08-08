@@ -23,7 +23,7 @@ export default Ember.Controller.extend({
         let self = this;
         let condoId = self.get('model').condoId;
         self.paginatedSearch.reset();
-        self.paginatedSearch.loadMetaAndResults(`/condos/${condoId}/condoBills`, self.filters())
+        self.paginatedSearch.loadMetaAndResults(`condos/${condoId}/condoBills`, self.filters())
                 .catch(error => self.handleError(error));
     },
 
@@ -36,7 +36,7 @@ export default Ember.Controller.extend({
             let self = this;
             let condoId = self.get('model').condoId;
 
-            self.paginatedSearch.loadResults(`/condos/${condoId}/condoBills`,  self.filters())
+            self.paginatedSearch.loadResults(`condos/${condoId}/condoBills`,  self.filters())
                 .catch(error => self.handleError(error));
         }
     }
