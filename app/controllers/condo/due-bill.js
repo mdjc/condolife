@@ -97,6 +97,10 @@ export default Ember.Controller.extend({
                 }).catch(error => {
                    self.handleError(error);
                 });
+        },
+
+        back() {
+            history.back();
         }
     }
 });

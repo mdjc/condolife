@@ -1,3 +1,7 @@
+<a href="#" {{action 'back'}} class="active ember-view">
+    <span class="glyphicon glyphicon-hand-left"></span> Volver
+</a>
+
 <h2>Gasto No. {{model.id}}</h2>
 <div class='summary'>
     <p><strong>Categoria: </strong> {{translate model.category}}</p>
@@ -23,10 +27,10 @@
     <div class="alert alert-success">{{successMsg}}</div>
 {{/if}}
 
-{{#bs-modal open=deleteModalVisible title="Eliminar Factura" 
-    size="sm" onSubmit=(action "deleteReceipt") onHidden=(action (mut deleteModalVisible) false) as |modal|}}
-  {{#modal.header}}<h4 class="modal-title">Eliminar Pago</h4>{{/modal.header}}
-  {{#modal.body}}<p>Desea eliminar esta pago?</p>{{/modal.body}}
+{{#bs-modal open=deleteModalVisible title="Eliminar Gasto" 
+    size="sm" onSubmit=(action "delete") onHidden=(action (mut deleteModalVisible) false) as |modal|}}
+  {{#modal.header}}<h4 class="modal-title">Eliminar Gasto</h4>{{/modal.header}}
+  {{#modal.body}}<p>Desea eliminar este gasto?</p>{{/modal.body}}
   {{#modal.footer}}
     {{#bs-button onClick=(action modal.close)}}Cancelar{{/bs-button}}
     {{#bs-button class="btn btn-primary" onClick=(action modal.submit)}}Aceptar{{/bs-button}}

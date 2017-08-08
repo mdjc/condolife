@@ -30,6 +30,10 @@ export default Ember.Controller.extend({
             }).catch(function(error) {
                self.handleError(error);
             });
+        },
+
+        back() {
+            history.back();
         }
     }
 });

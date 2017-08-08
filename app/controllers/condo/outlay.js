@@ -16,7 +16,7 @@ export default Ember.Controller.extend({
     }),
 
     actions: {
-        deleteReceipt() {
+        delete() {
             let self = this;
             self.set('deleteModalVisible', false);
             let outlayId = this.get('model').id;
@@ -27,11 +27,15 @@ export default Ember.Controller.extend({
                     Ember.run.later(() => self.set("successMsg", ""), 3000);
                     Ember.run.later(() => {
                         self.get('outlayLogController').send('search');
-                        self.transitionToRoute('condo.outlay-log');
+                        history.back();
                     }, 3000);
                 }).catch(function(error) {
                    self.handleError(error);
                 });
+        },
+
+        back() {
+            history.back();
         }
     }
 });

@@ -31,6 +31,10 @@ export default Ember.Controller.extend({
 
         rejectBill() {
              this.patchBill("REJECTED", "Factura Rechazada");
+        },
+
+        back() {
+            history.back();
         }
     }
 });
