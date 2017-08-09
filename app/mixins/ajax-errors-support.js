@@ -13,7 +13,8 @@ export default Ember.Mixin.create({
         } else if (this.isNotfound(error)) {
             transitionFunction.call(this, 'notfound');               
         } else {
-            transitionFunction.call(this, 'unexpected-error');               
+            transitionFunction.call(this, 'unexpected-error');
+            Ember.Logger.error(error);
         }
 
     },
