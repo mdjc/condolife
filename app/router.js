@@ -9,7 +9,7 @@ const Router = Ember.Router.extend({
 Router.map(function() {
   this.route('login');
   this.route('condos');
-  
+
   this.route('condo', {path: 'condos/:condoId'}, function() {
     this.route('dashboard');
     this.route('due-bills');
@@ -27,7 +27,8 @@ Router.map(function() {
   this.route("notfound");
   this.route('unexpected-error');
   this.route("page-notfound", { path: "*path"});
-  
+
+  this.route('forbidden');
 });
 
 export default Router;
