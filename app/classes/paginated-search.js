@@ -5,17 +5,20 @@ const PaginatedSearch = Ember.Object.extend({
     results: [],
     total: 0,
     offset: 0,
+    loading: false,
  
     reset() {
         this.set('results', []);
         this.set('total', 0);
         this.set('offset', 0);
         this.set('hasMoreResults', false);
+        this.set('loading', false);
     },
 
     loadMetaAndResults(url, filters) {
         let self = this;
         self.reset();
+        self.set('loading', true);
 
         return self.get('ajaxHelper').requestJson(`${url}/meta`, filters)
                 .then(response => {
@@ -27,6 +30,7 @@ const PaginatedSearch = Ember.Object.extend({
 
     loadResults(url, filters) {
         let self = this;
+        self.set('loading', true);
         filters.limit = self.resultsSearchLimit;
         filters.offset = self.offset;
 
@@ -37,6 +41,7 @@ const PaginatedSearch = Ember.Object.extend({
                     });
                    
                     self.set('offset', self.offset +  self.resultsSearchLimit);
+                    Ember.run.later(() => self.set('loading', false), 500);
                 });
     }
 });

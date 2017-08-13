@@ -128,3 +128,7 @@
   cursor: zoom-out;
   width: 100%;
 }
+
+.img-tiny {
+  width: 18px;
+}

@@ -6,15 +6,24 @@ export default Ember.Controller.extend({
     imgBig: false,
     errorMsg: '',
     successMsg: '',
+    loadingConfirm: false,
+    loadingReject: false,
 
     patchBill(paymentStatus, successMsg) {
         let self = this; 
         let billId = this.get('model.id'); 
+        
         self.get('ajaxHelper').patch(`condoBills/${billId}/payment`, 'text/plain', "text", paymentStatus)
             .then(() => {
-                self.set("successMsg", successMsg);
-                Ember.run.later(() => self.set("successMsg", ""), 3000);
-                Ember.run.later(() => self.transitionToRoute('condo.unconfirmed-bills'), 3000);
+                Ember.run.later(() => {
+                    self.set('loadingConfirm', false);
+                    self.set('loadingReject', false);
+                    self.set('successMsg', successMsg);
+                }, 500);
+                Ember.run.later(() => {
+                    self.set("successMsg", "");
+                    self.transitionToRoute('condo.unconfirmed-bills');
+                }, 3000);
             }).catch((error) => {
                 self.handleError(error);
             });     
@@ -26,11 +35,13 @@ export default Ember.Controller.extend({
         },
 
         confirmBill() {
+            this.set('loadingConfirm', true);
             this.patchBill("PAID_CONFIRMED", "Factura Confirmada");
         },
 
         rejectBill() {
-             this.patchBill("REJECTED", "Factura Rechazada");
+            this.set('loadingReject', true);
+            this.patchBill("REJECTED", "Factura Rechazada");
         },
 
         back() {

@@ -14,6 +14,7 @@ export default Ember.Controller.extend({
     proofOfPaymentPict: '',
     errorMsg: '',
     successMsg: '',
+    sendPaymentLoading: false,
 
     resetFields() {
         this.set('paymentMethod', 'CASH');
@@ -21,6 +22,7 @@ export default Ember.Controller.extend({
         this.set('proofOfPaymentPict', '');
         this.set('errorMsg', '');
         this.set('successMsg', '');
+        this.set('sendPaymentLoading', false);
     },
 
     paymentInfoChanged() {
@@ -81,6 +83,7 @@ export default Ember.Controller.extend({
                 return;
             }
 
+            self.set('sendPaymentLoading', true);
             let billId = this.get('model').id;
             let formData = new FormData();
             formData.append('paymentMethod', this.get('paymentMethod'));    
@@ -91,9 +94,14 @@ export default Ember.Controller.extend({
 
             self.get('ajaxHelper').put(`condoBills/${billId}/payment`, false, "text", formData, false)
                 .then(() => {
-                    self.set("successMsg", "Su pago ha sido enviado. Nuevo estado: En espera de confirmación");
-                    Ember.run.later(() => self.set("successMsg", ""), 5000);
-                    Ember.run.later(() => self.transitionToRoute('condo.due-bills'), 5000);
+                    Ember.run.later(() => { 
+                       self.set('sendPaymentLoading', false);
+                       self.set("successMsg", "Su pago ha sido enviado. Nuevo estado: En espera de confirmación");
+                    }, 500);
+                    Ember.run.later(() => { 
+                        self.set("successMsg", ""); 
+                        self.transitionToRoute('condo.due-bills');
+                    }, 5000);
                 }).catch(error => {
                    self.handleError(error);
                 });

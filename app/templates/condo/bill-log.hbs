@@ -1,4 +1,5 @@
 <h2>Hist&oacute;rico de Facturas</h2>
+
 <form {{action "search" on="submit"}}>
     <div class="panel panel-default">
         <div class="panel-body">
@@ -40,7 +41,9 @@
                 </div>
             </div>
         </div>
-        <button type="submit" class="btn btn-default">Buscar</button>
+        <button type="submit" class="btn btn-default">
+            Buscar {{#if loading}}<img class="img-tiny" src="{{rootURL}}/loading.gif">{{/if}}
+        </button>
       </div>
     </div>
 </form>

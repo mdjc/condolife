@@ -6,6 +6,7 @@ export default Ember.Controller.extend({
     ajaxHelper: Ember.inject.service(),
     outlayLogController: Ember.inject.controller('condo/outlay-log'),
     deleteModalVisible: false,
+    loadingDelete: false,
 
     isResident: Ember.computed('session.currentUserRole', function() {
         return this.get('session').currentUserRole === 'RESIDENT';
@@ -20,16 +21,20 @@ export default Ember.Controller.extend({
         delete() {
             let self = this;
             self.set('deleteModalVisible', false);
+            self.set('loadingDelete', true);
             let outlayId = this.get('model').id;
 
             self.get('ajaxHelper').delete(`outlays/${outlayId}`, 'text/plain', "text")
                 .then(() => {
-                    self.set("successMsg", "Gasto Eliminado");
-                    Ember.run.later(() => self.set("successMsg", ""), 3000);
                     Ember.run.later(() => {
+                        self.set('loadingDelete', false);
+                        self.set("successMsg", "Gasto Eliminado");
+                    }, 500);
+                    Ember.run.later(() => {
+                        self.set("successMsg", "");
                         self.get('outlayLogController').send('search');
                         history.back();
-                    }, 3000);
+                    }, 2500);
                 }).catch(function(error) {
                    self.handleError(error);
                 });

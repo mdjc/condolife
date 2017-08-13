@@ -11,6 +11,7 @@ export default Ember.Controller.extend({
     description: '',
     errorMsg: '',
     successMsg: '',
+    loadingSend: false,
 
     apartmentsWithResidents: Ember.computed('model.apartments', function() {
         let apartments = this.get('model').apartments
@@ -34,6 +35,7 @@ export default Ember.Controller.extend({
         this.set('description', '');
         this.set('errorMsg', '');
         this.set('successMsg', '');
+        this.set('loadingSend', false);
     },
 
     actions: {
@@ -56,6 +58,8 @@ export default Ember.Controller.extend({
                 return;
             }
 
+            self.set('loadingSend', true);
+
             let bill = {
                 description: self.description,
                 dueDate: self.dueDate,
@@ -67,9 +71,14 @@ export default Ember.Controller.extend({
 
             self.get('ajaxHelper').post(`condos/${condoId}/condoBills`, 'application/json', "text", bill)
                 .then(function() {
-                    self.set("successMsg", "Factura creada");
-                    Ember.run.later(() => self.set("successMsg", ""), 2500);
-                    Ember.run.later(() => self.transitionToRoute('condo.dashboard'), 3000);
+                    Ember.run.later(() => {
+                        self.set('loadingSend', false);
+                        self.set("successMsg", "Factura creada");
+                    }, 500);
+                    Ember.run.later(() => {
+                        self.set("successMsg", "");
+                        self.transitionToRoute('condo.dashboard');
+                    }, 2500);
                     self.get('billLogController').send('reset');
                 }).catch((error) => {
                     if (self.isBadRequest(error)) {

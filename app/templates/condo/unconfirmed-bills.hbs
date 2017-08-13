@@ -1,4 +1,6 @@
-<h2>Facturas Pagadas por Confirmar</h2>
+<h2>Facturas Pagadas por Confirmar 
+    {{#if loading}}<img class="img-tiny" src="{{rootURL}}/loading.gif">{{/if}}
+</h2>
 
 {{#search-panel results=results noResultsMsg='No hay facturas por confirmar'}}
     {{#each results as |bill|}}

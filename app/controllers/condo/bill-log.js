@@ -26,6 +26,10 @@ export default Ember.Controller.extend({
     moreResultsToLoad: Ember.computed('paginatedSearch.offset', function() {
        return this.paginatedSearch.offset < this.paginatedSearch.total;
     }),
+
+    loading: Ember.computed('paginatedSearch.loading', function() {
+       return this.paginatedSearch.loading === true;
+    }),
     
     reset() {
         let currentCondo = this.model.condoId;
@@ -42,7 +46,7 @@ export default Ember.Controller.extend({
         this.set('awaitingConfirmation', true);
         this.set('confirmed', true);
         this.set('rejected', true);
-        this.set('errorMsg', ''); 
+        this.set('errorMsg', '');
         this.paginatedSearch.reset();
     },
 

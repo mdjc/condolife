@@ -8,6 +8,7 @@ export default Ember.Controller.extend({
     deleteModalVisible: false,
     errorMsg: '',
     successMsg: '',
+    loadingDelete: false,
     
     isResident: Ember.computed('session.currentUserRole', function() {
         return this.get('session').currentUserRole === 'RESIDENT';
@@ -18,15 +19,19 @@ export default Ember.Controller.extend({
             let self = this;
             self.set('deleteModalVisible', false);
             let billId = this.get('model').id;
+            self.set('loadingDelete', true);
 
             self.get('ajaxHelper').delete(`condoBills/${billId}`,'text/plain',"text")
                 .then(() => {
-                    self.set("successMsg", "Factura Eliminada");
-                    Ember.run.later(() => self.set("successMsg", ""), 3000);
                     Ember.run.later(() => {
+                        self.set('loadingDelete', false);
+                        self.set("successMsg", "Factura Eliminada");    
+                    } , 500);
+                    Ember.run.later(() => {
+                        self.set("successMsg", "");
                         self.get('billLogController').send('search');
                         self.transitionToRoute('condo.bill-log');
-                }, 3000);
+                    }, 3000);
             }).catch(function(error) {
                self.handleError(error);
             });

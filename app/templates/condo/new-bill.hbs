@@ -25,7 +25,9 @@
             {{input type="text" class="form-control" id="description" placeholder="Concepto" maxlength="100" value=description}}
         </div>
     </div>
-    <button type="submit" class="btn btn-primary" {{action "send"}}>Enviar</button>
+    <button type="submit" class="btn btn-primary" {{action "send"}}>
+        Enviar {{#if loadingSend}}<img class="img-tiny" src="{{rootURL}}/loading.gif">{{/if}}
+    </button>
 </form>
 {{#if errorMsg}}
     <div class="alert alert-danger">{{errorMsg}}</div>

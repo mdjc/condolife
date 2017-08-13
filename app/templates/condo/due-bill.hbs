@@ -27,7 +27,9 @@
         {{/x-file-input}}
     </div>
 </div>
-<button class="btn btn-primary" type="button" {{action "sendPayment"}}>Enviar</button>
+<button class="btn btn-primary" type="button" {{action "sendPayment"}}>
+    Enviar {{#if sendPaymentLoading}}<img class="img-tiny" src="{{rootURL}}/loading.gif">{{/if}}
+</button>
 {{#if errorMsg}}
     <div class="alert alert-danger">{{errorMsg}}</div>
 {{/if}}

@@ -23,6 +23,10 @@ export default Ember.Controller.extend({
        return this.paginatedSearch.offset < this.paginatedSearch.total;
     }),
 
+    loading: Ember.computed('paginatedSearch.loading', function() {
+       return this.paginatedSearch.loading === true;
+    }),
+
     reset() {
         let currentCondo = this.model.condoId;
 

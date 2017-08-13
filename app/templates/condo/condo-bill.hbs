@@ -6,7 +6,9 @@
 {{payment-info bill=model}}
 
 {{#if (not isResident)}}
-    {{#bs-button class="btn btn-danger" onClick=(action (mut deleteModalVisible) true)}}Eliminar{{/bs-button}}
+    {{#bs-button class="btn btn-danger" onClick=(action (mut deleteModalVisible) true)}}
+      Eliminar {{#if loadingDelete}}<img class="img-tiny" src="{{rootURL}}/loading.gif">{{/if}}
+    {{/bs-button}}
 {{/if}}
 {{#if errorMsg}}
     <div class="alert alert-danger">{{errorMsg}}</div>

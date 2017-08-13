@@ -18,6 +18,7 @@ export default Ember.Controller.extend({
     comment: '',
     receiptImg: '',
     receiptImgSrc: '',
+    loadingSend: false,
 
     reset() {
         this.set('category', 'MAINTAINANCE');
@@ -28,6 +29,7 @@ export default Ember.Controller.extend({
         this.set('receiptImgSrc', '');
         this.set('errorMsg', '');
         this.set('successMsg', '');
+        this.set('loadingSend', false);
     },
 
     actions : {
@@ -81,6 +83,7 @@ export default Ember.Controller.extend({
                 return;
             }
 
+            this.set('loadingSend', true);
             let condoId = self.get('model').condoId;
             let formData = new FormData();
             formData.append('category', this.get('category')); 
@@ -91,9 +94,14 @@ export default Ember.Controller.extend({
 
             self.get('ajaxHelper').post(`condos/${condoId}/outlays`, false, "text", formData, false)
                 .then(() => {
-                    self.set("successMsg", "Gasto agregado.");
-                    Ember.run.later(() => self.set("successMsg", ""), 3000);
-                    Ember.run.later(() => self.transitionToRoute('condo.dashboard'), 3000);
+                    Ember.run.later(() => {
+                        this.set('loadingSend', false);
+                        self.set("successMsg", "Gasto agregado.");
+                    }, 500);
+                    Ember.run.later(() => {
+                        self.set("successMsg", "");
+                        self.transitionToRoute('condo.dashboard');
+                    }, 2500);
                     self.get('outlayLogController').send('reset');
                 }).catch(error => {
                    self.handleError(error);

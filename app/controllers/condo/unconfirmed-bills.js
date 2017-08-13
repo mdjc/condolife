@@ -13,6 +13,10 @@ export default Ember.Controller.extend({
        return this.paginatedSearch.offset < this.paginatedSearch.total;
     }),
 
+    loading: Ember.computed('paginatedSearch.loading', function() {
+       return this.paginatedSearch.loading === true;
+    }),
+
     init() {
         this.paginatedSearch = PaginatedSearch.create({
             ajaxHelper: this.get('ajaxHelper')
