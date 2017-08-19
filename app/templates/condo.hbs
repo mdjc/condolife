@@ -11,11 +11,18 @@
             {{else}} 
               <li><span class="glyphicon glyphicon-home"></span> Condominios</li>
             {{/if}}            
-            <li class="active">
-              {{model.condo.name}} <small>(administrado por: {{model.condo.manager.name}})</small>
-            </li>
+          
             {{#if isResident}}
+              <li>
+                {{model.condo.name}} 
+                <small>(administrado por: {{model.condo.manager.name}})</small>
+              </li>
               <li class="active">Apartamento {{model.apartment.name}}</li>
+            {{else}}
+              <li class="active">
+                {{model.condo.name}} 
+                <small>(administrado por: {{model.condo.manager.name}})</small>
+              </li>
             {{/if}}
           </ol>
         </div>
