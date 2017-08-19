@@ -23,6 +23,8 @@ export default Ember.Controller.extend({
                 Ember.run.later(() => self.transitionToRoute('condo.unconfirmed-bills'), 3000);
                 Ember.run.later(() => self.set("successMsg", ""), 3500);
             }).catch((error) => {
+                self.set('loadingConfirm', false);
+                self.set('loadingReject', false);
                 self.handleError(error);
             });     
     },

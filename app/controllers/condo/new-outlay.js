@@ -102,6 +102,7 @@ export default Ember.Controller.extend({
                     Ember.run.later(() => self.set("successMsg", ""), 3000);
                     self.get('outlayLogController').send('reset');
                 }).catch(error => {
+                   this.set('loadingSend', false);
                    self.handleError(error);
                 });
         }

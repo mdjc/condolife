@@ -79,6 +79,8 @@ export default Ember.Controller.extend({
                     Ember.run.later(() => self.set("successMsg", ""), 3000);
                     self.get('billLogController').send('reset');
                 }).catch((error) => {
+                    self.set('loadingSend', false);
+                    
                     if (self.isBadRequest(error)) {
                         self.set("errorMsg", "Error - Por favor válida el monto insertado");
                         Ember.run.later(() => self.set("errorMsg", ""), 6000);

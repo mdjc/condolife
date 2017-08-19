@@ -33,6 +33,7 @@ export default Ember.Controller.extend({
                     }, 3000);
                     Ember.run.later(() => self.set("successMsg", ""), 3500);
             }).catch(function(error) {
+               self.set('loadingDelete', false);
                self.handleError(error);
             });
         },

@@ -11,7 +11,10 @@
           {{input type="password" class="form-control" id="password" placeholder="Contraseña" value=password}}
         </div>
       </div>
-      <button type="submit" class="btn btn-primary btn-lg btn-block">Iniciar Sesi&oacute;n</button>
+      <button type="submit" class="btn btn-primary btn-lg btn-block">
+        Iniciar Sesi&oacute;n 
+        {{#if loading}}<img class="img-tiny" src="{{rootURL}}/loading.gif">{{/if}}
+      </button>
       {{action-message errorMsg=errorMsg}}
     </form>
 </div>
