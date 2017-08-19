@@ -11,7 +11,12 @@
             {{else}} 
               <li><span class="glyphicon glyphicon-home"></span> Condominios</li>
             {{/if}}            
-            <li class="active">{{model.name}} <small>(administrado por: {{model.manager.name}})</small></li>
+            <li class="active">
+              {{model.condo.name}} <small>(administrado por: {{model.condo.manager.name}})</small>
+            </li>
+            {{#if isResident}}
+              <li class="active">Apartamento {{model.apartment.name}}</li>
+            {{/if}}
           </ol>
         </div>
 
@@ -29,39 +34,39 @@
 
         <div class="col-xs-6 col-sm-3 sidebar-offcanvas">
           <div class="list-group">            
-            {{#link-to "condo.dashboard" model.id class="list-group-item"}}
+            {{#link-to "condo.dashboard" model.condo.id class="list-group-item"}}
               <span class="glyphicon glyphicon-dashboard"></span> Tablero
             {{/link-to}}
 
             {{#if isResident}}
-              {{#link-to "condo.due-bills" model.id class="list-group-item"}}
+              {{#link-to "condo.due-bills" model.condo.id class="list-group-item"}}
                 <span class="glyphicon glyphicon-list-alt"></span> Facturas por Pagar
               {{/link-to}}
             {{/if}}
 
             {{#if (not isResident)}}
-              {{#link-to "condo.unconfirmed-bills" model.id class="list-group-item"}}
+              {{#link-to "condo.unconfirmed-bills" model.condo.id class="list-group-item"}}
                 <span class="glyphicon glyphicon-list-alt"></span> Facturas por Confirmar
               {{/link-to}}
             {{/if}}
 
             {{#if (not isResident)}}
-              {{#link-to "condo.new-bill" model.id class="list-group-item"}}
+              {{#link-to "condo.new-bill" model.condo.id class="list-group-item"}}
                 <span class="glyphicon glyphicon-plus"></span> Nueva Factura
               {{/link-to}}
             {{/if}}
           
-            {{#link-to "condo.bill-log" model.id class="list-group-item"}}
+            {{#link-to "condo.bill-log" model.condo.id class="list-group-item"}}
               <span class="glyphicon glyphicon-book"></span> Hist&oacute;rico de Facturas
             {{/link-to}}
 
             {{#if (not isResident)}}
-              {{#link-to "condo.new-outlay" model.id class="list-group-item"}}
+              {{#link-to "condo.new-outlay" model.condo.id class="list-group-item"}}
                 <span class="glyphicon glyphicon-plus"></span> Nuevo Gasto
               {{/link-to}}
             {{/if}}
 
-            {{#link-to "condo.outlay-log" model.id class="list-group-item"}}
+            {{#link-to "condo.outlay-log" model.condo.id class="list-group-item"}}
               <span class="glyphicon glyphicon-credit-card"></span> Hist&oacute;rico de Gastos
             {{/link-to}}
           </div>
