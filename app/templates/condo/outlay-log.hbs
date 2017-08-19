@@ -25,14 +25,13 @@
     </div>
 </form>
 
-{{#search-panel results=results heading='Resultados'
- noResultsMsg='No se encontraron resultados'}}
+{{#search-results-panel noResultsMsg=noResultsMsg}}
     {{#each results as |outlay|}}
         {{#outlay-list-item outlay=outlay}}
              {{#link-to "condo.outlay" outlay.id class="btn btn-default"}}Ver{{/link-to}}
         {{/outlay-list-item}}
     {{/each}}
-{{/search-panel}}
+{{/search-results-panel}}
 
 {{#if moreResultsToLoad}}
     <button class="btn btn-default" type="button" {{action "loadMoreResults"}}>

@@ -2,11 +2,11 @@
     {{#if loading}}<img class="img-tiny" src="{{rootURL}}/loading.gif">{{/if}}
 </h2>
 
-{{#search-panel results=results noResultsMsg='No hay facturas por confirmar'}}
+{{#results-panel results=results noResultsMsg='No hay facturas por confirmar'}}
     {{#each results as |bill|}}
         {{condo-bill-list-item view-link='condo.unconfirmed-bill' bill=bill}}
     {{/each}}
-{{/search-panel}}
+{{/results-panel}}
 
 {{#if moreResultsToLoad}}
     <button class="btn btn-default" type="button" {{action "loadMoreResults"}}>

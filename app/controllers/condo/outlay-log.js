@@ -27,6 +27,10 @@ export default Ember.Controller.extend({
        return this.paginatedSearch.loading === true;
     }),
 
+    noResultsMsg: Ember.computed('paginatedSearch.noResultsMsg', function() {
+       return this.paginatedSearch.noResultsMsg;
+    }),
+
     reset() {
         let currentCondo = this.model.condoId;
 

@@ -6,6 +6,7 @@ const PaginatedSearch = Ember.Object.extend({
     total: 0,
     offset: 0,
     loading: false,
+    noResultsMsg: null,
  
     reset() {
         this.set('results', []);
@@ -13,12 +14,14 @@ const PaginatedSearch = Ember.Object.extend({
         this.set('offset', 0);
         this.set('hasMoreResults', false);
         this.set('loading', false);
+        this.set('noResultsMsg', null);
     },
 
     loadMetaAndResults(url, filters) {
         let self = this;
         self.reset();
         self.set('loading', true);
+        self.set('noResultsMsg', null);
 
         return self.get('ajaxHelper').requestJson(`${url}/meta`, filters)
                 .then(response => {
@@ -41,7 +44,12 @@ const PaginatedSearch = Ember.Object.extend({
                     });
                    
                     self.set('offset', self.offset +  self.resultsSearchLimit);
-                    Ember.run.later(() => self.set('loading', false), 500);
+                    Ember.run.later(() => {
+                        self.set('loading', false);
+                        if (response.length === 0) {
+                            this.set('noResultsMsg', 'No existen resultados');
+                        }
+                    }, 500);
                 });
     }
 });

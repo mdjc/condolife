@@ -43,10 +43,10 @@
     </div>
 </div>
 
-{{#search-panel results=model.outlays heading='Gastos Recientes'
+{{#results-panel results=model.outlays heading='Gastos Recientes'
  noResultsMsg='No hay nuevos gastos este mes.'}}
     {{#each model.outlays as |outlay|}}
         {{outlay-list-item outlay=outlay}}
     {{/each}}
-{{/search-panel}}
+{{/results-panel}}
       
