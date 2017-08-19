@@ -12,8 +12,6 @@
         </div>
       </div>
       <button type="submit" class="btn btn-primary btn-lg btn-block">Iniciar Sesi&oacute;n</button>
-      {{#if errorMsg}}
-        <div class="alert alert-danger">{{errorMsg}}</div>
-      {{/if}}
+      {{action-message errorMsg=errorMsg}}
     </form>
 </div>

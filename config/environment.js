@@ -55,7 +55,7 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
-
+     ENV.RestAPIHost = 'http://35.188.84.143:8080';
   }
 
   return ENV;

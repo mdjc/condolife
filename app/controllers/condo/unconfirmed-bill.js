@@ -20,10 +20,8 @@ export default Ember.Controller.extend({
                     self.set('loadingReject', false);
                     self.set('successMsg', successMsg);
                 }, 500);
-                Ember.run.later(() => {
-                    self.set("successMsg", "");
-                    self.transitionToRoute('condo.unconfirmed-bills');
-                }, 3000);
+                Ember.run.later(() => self.transitionToRoute('condo.unconfirmed-bills'), 3000);
+                Ember.run.later(() => self.set("successMsg", ""), 3500);
             }).catch((error) => {
                 self.handleError(error);
             });     

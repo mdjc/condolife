@@ -46,7 +46,7 @@ export default Ember.Controller.extend({
 
             let reader = new FileReader();
             reader.onload = function(event) {
-                let ext =  file.name.split('.').pop();
+                let ext =  file.name.toLowerCase().split('.').pop();
 
                 if (self.get('pictValidExtensions').indexOf(ext) === -1) {
                     self.set("errorMsg", "Formato inválido, seleccione una imágen .PNG, .JPG, .GIF");
@@ -54,8 +54,8 @@ export default Ember.Controller.extend({
                     return;
                 }
 
-                if (file.size >= 1024 * 1024 * 1) {
-                    self.set("errorMsg", "La imágen no debe exceder 1 Mega Byte");
+                if (file.size >= 1024 * 1024 * 3) {
+                    self.set("errorMsg", "La imágen no debe exceder 3 Mega Bytes");
                     Ember.run.later(() => self.set("errorMsg", ""), 4000);
                     return;
                 }
@@ -65,7 +65,7 @@ export default Ember.Controller.extend({
 
             reader.readAsDataURL(file);
         },
-
+ 
         sendPayment() {
             let self = this;
 
@@ -98,10 +98,8 @@ export default Ember.Controller.extend({
                        self.set('sendPaymentLoading', false);
                        self.set("successMsg", "Su pago ha sido enviado. Nuevo estado: En espera de confirmación");
                     }, 500);
-                    Ember.run.later(() => { 
-                        self.set("successMsg", ""); 
-                        self.transitionToRoute('condo.due-bills');
-                    }, 5000);
+                    Ember.run.later(() => self.transitionToRoute('condo.due-bills'), 5000);
+                    Ember.run.later(() => self.set("successMsg", ""), 5500);
                 }).catch(error => {
                    self.handleError(error);
                 });

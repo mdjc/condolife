@@ -1,7 +1,7 @@
 <a href="#" {{action 'back'}} class="active ember-view">
     <span class="glyphicon glyphicon-hand-left"></span> Volver
 </a>
-
+{{action-message errorMsg=errorMsg successMsg=successMsg}}
 <h2>Pagar Factura No. <strong>{{model.id}}</strong></h2>
 {{bill-summary bill=model}}
 <div class="form-group row">
@@ -30,9 +30,3 @@
 <button class="btn btn-primary" type="button" {{action "sendPayment"}}>
     Enviar {{#if sendPaymentLoading}}<img class="img-tiny" src="{{rootURL}}/loading.gif">{{/if}}
 </button>
-{{#if errorMsg}}
-    <div class="alert alert-danger">{{errorMsg}}</div>
-{{/if}}
-{{#if successMsg}}
-    <div class="alert alert-success">{{successMsg}}</div>
-{{/if}}

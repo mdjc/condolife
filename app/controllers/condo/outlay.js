@@ -31,10 +31,10 @@ export default Ember.Controller.extend({
                         self.set("successMsg", "Gasto Eliminado");
                     }, 500);
                     Ember.run.later(() => {
-                        self.set("successMsg", "");
                         self.get('outlayLogController').send('search');
                         history.back();
                     }, 2500);
+                    Ember.run.later(() => self.set("successMsg", ""), 3000);
                 }).catch(function(error) {
                    self.handleError(error);
                 });

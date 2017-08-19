@@ -2,6 +2,7 @@
     <span class="glyphicon glyphicon-hand-left"></span> Volver
 </a>
 
+{{action-message errorMsg=errorMsg successMsg=successMsg}}
 {{bill-summary-condo bill=model}}
 {{payment-info bill=model}}
 
@@ -11,9 +12,3 @@
 <button type="button" class="btn btn-default" {{action "rejectBill"}}>
     Rechazar {{#if loadingReject}}<img class="img-tiny" src="{{rootURL}}/loading.gif">{{/if}}
 </button>
-{{#if errorMsg}}
-    <div class="alert alert-danger">{{errorMsg}}</div>
-{{/if}}
-{{#if successMsg}}
-    <div class="alert alert-success">{{successMsg}}</div>
-{{/if}}

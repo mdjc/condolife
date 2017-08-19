@@ -2,6 +2,7 @@
     <span class="glyphicon glyphicon-hand-left"></span> Volver
 </a>
 
+{{action-message errorMsg=errorMsg successMsg=successMsg}}
 <h2>Gasto No. {{model.id}}</h2>
 <div class='summary'>
     <p><strong>Categoria: </strong> {{translate model.category}}</p>
@@ -20,13 +21,6 @@
     {{#bs-button class="btn btn-danger" onClick=(action (mut deleteModalVisible) true)}}
       Eliminar {{#if loadingDelete}}<img class="img-tiny" src="{{rootURL}}/loading.gif">{{/if}}
     {{/bs-button}}
-{{/if}}
-
-{{#if errorMsg}}
-    <div class="alert alert-danger">{{errorMsg}}</div>
-{{/if}}
-{{#if successMsg}}
-    <div class="alert alert-success">{{successMsg}}</div>
 {{/if}}
 
 {{#bs-modal open=deleteModalVisible title="Eliminar Gasto" 

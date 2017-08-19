@@ -32,7 +32,7 @@ export default Ember.Controller.extend({
                    self.transitionToRoute('condos');
                 }).catch(error => {
                     if (this.isUnauthorized(error)) {
-                        self.set("errorMsg", "invalid username/password");
+                        self.set("errorMsg", "usario / contraseña inválido");
                         Ember.run.later(() => self.set("errorMsg", ""), 3000);
                         return;
                     }

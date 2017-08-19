@@ -28,10 +28,10 @@ export default Ember.Controller.extend({
                         self.set("successMsg", "Factura Eliminada");    
                     } , 500);
                     Ember.run.later(() => {
-                        self.set("successMsg", "");
                         self.get('billLogController').send('search');
                         self.transitionToRoute('condo.bill-log');
                     }, 3000);
+                    Ember.run.later(() => self.set("successMsg", ""), 3500);
             }).catch(function(error) {
                self.handleError(error);
             });

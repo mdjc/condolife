@@ -75,10 +75,8 @@ export default Ember.Controller.extend({
                         self.set('loadingSend', false);
                         self.set("successMsg", "Factura creada");
                     }, 500);
-                    Ember.run.later(() => {
-                        self.set("successMsg", "");
-                        self.transitionToRoute('condo.dashboard');
-                    }, 2500);
+                    Ember.run.later(() => self.transitionToRoute('condo.dashboard'), 2500);
+                    Ember.run.later(() => self.set("successMsg", ""), 3000);
                     self.get('billLogController').send('reset');
                 }).catch((error) => {
                     if (self.isBadRequest(error)) {

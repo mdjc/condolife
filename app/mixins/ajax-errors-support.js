@@ -22,6 +22,10 @@ export default Ember.Mixin.create({
             Ember.Logger.error(error);
         }
     },
+    
+    isUnauthorized(error) {
+        return isUnauthorizedError(error);
+    },
 
     isBadRequest(error) {
         return isBadRequestError(error);
