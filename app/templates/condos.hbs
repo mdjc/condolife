@@ -1,20 +1,23 @@
 <div class="container">
     <div class="row">
          <div class="col-xs-12">
-            <h2>Selecciona un Condominio</h2>
+            <h1>Selecciona un Condominio</h1>
          </div>
     </div>
-    
+
     <div class="row">
-        <div class="col-xs-12">
-            <div class="btn-group-vertical btn-group-lg" role="group">
-                {{#each model as |condo|}}
-                    {{#link-to "condo" condo.id class="btn btn-default"}}
-                        {{condo.name}}
-                    {{/link-to}}
-                {{/each}}          
+        {{#each model as |condo|}}
+            <div class="col-xs-12 col-sm-5 col-md-3">                
+                <div class="thumbnail">
+                    <img src="{{imgHost}}/condos/{{condo.id}}/img" 
+                     class="img-responsive" alt="Foto {{condo.name}}">
+                    <div class="caption">
+                        {{#link-to "condo" condo.id}}<h3> {{condo.name}}</h3>{{/link-to}}
+                        <p>{{condo.address}}</p>
+                        <p>Contacto: {{condo.contactName}} {{condo.contactPhone}}</p>
+                    </div>
+                </div>                
             </div>
-        </div>
+        {{/each}}
     </div>
 </div>
-{{outlet}}
