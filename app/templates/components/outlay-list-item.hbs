@@ -1,8 +1,14 @@
 <div class='summary'>
-    {{yield}}
-    {{outlay.createdOn.dayOfMonth}}/{{outlay.createdOn.monthValue}}/{{outlay.createdOn.year}} 
-    {{translate outlay.category}}, <strong>{{pesos outlay.amount}}</strong>
-    {{#if outlay.comment}} 
-        ({{outlay.comment}})
-    {{/if}}
+    <div class="row">
+        <div class="col-xs-12 col-sm-10">
+            {{outlay.createdOn.dayOfMonth}}/{{outlay.createdOn.monthValue}}/{{outlay.createdOn.year}} 
+            {{translate outlay.category}}, <strong>{{pesos outlay.amount}}</strong>
+            {{#if outlay.comment}} 
+                ({{outlay.comment}})
+            {{/if}}
+        </div>
+        <div class="col-xs-12 col-sm-2 text-right">
+            {{yield}}
+        </div>
+    </div>
 </div>

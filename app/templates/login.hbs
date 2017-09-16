@@ -1,6 +1,12 @@
-<div class="container">
-    <h1 class="text-center">Iniciar Sesi&oacute;n</h1>
-    <form class="form-login" {{action "login" on="submit"}}>
+<div class="container form-login">
+    <div class="row">
+      <div class="col-xs-12 text-center">
+        {{#link-to "index"}}<img src="{{rootURL}}/login-logo-opt.png">{{/link-to}}
+      </div>
+    </div>
+
+    <form {{action "login" on="submit"}}>
+      <h2 class="text-center">Iniciar Sesi&oacute;n</h2>
       <div class="row form-group">
         <div class="col-xs-12">
           {{input id="username" type="text" class="form-control" placeholder="Nombre de usuario" value=username }}
@@ -11,10 +17,16 @@
           {{input type="password" class="form-control" id="password" placeholder="Contraseña" value=password}}
         </div>
       </div>
-      <button type="submit" class="btn btn-primary btn-lg btn-block">
-        Iniciar Sesi&oacute;n 
-        {{#if loading}}<img class="img-tiny" src="{{rootURL}}/loading.gif">{{/if}}
-      </button>
+
+      <div class="row">
+        <div class="col-xs-12 text-center">
+          <button type="submit" class="btn btn-primary">
+            Iniciar Sesi&oacute;n 
+            {{#if loading}}<img class="img-tiny" src="{{rootURL}}/loading.gif">{{/if}}
+          </button>
+        </div>
+      </div>
+
       {{action-message errorMsg=errorMsg}}
     </form>
 </div>

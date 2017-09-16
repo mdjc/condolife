@@ -4,5 +4,13 @@ export default Ember.Route.extend({
     setupController: function(controller, model) {
         this._super(controller, model);
         controller.init();
+    },
+
+    beforeModel(){
+        Ember.$('body').toggleClass("building-bg")
+    },
+    
+    deactivate(){
+        Ember.$('body').toggleClass("building-bg")
     }
 });

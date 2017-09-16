@@ -13,15 +13,17 @@
             {{/if}}            
           
             {{#if isResident}}
-              <li>
-                {{model.condo.name}} 
-                <small>(administrado por: {{model.condo.manager.name}})</small>
+              <li>              
+                {{#link-to "condo" model.condo.id}}
+                  {{model.condo.name}}
+                {{/link-to}}
               </li>
               <li class="active">Apartamento {{model.apartment.name}}</li>
             {{else}}
               <li class="active">
-                {{model.condo.name}} 
-                <small>(administrado por: {{model.condo.manager.name}})</small>
+                {{#link-to "condo" model.condo.id}}
+                  {{model.condo.name}}
+                {{/link-to}}
               </li>
             {{/if}}
           </ol>

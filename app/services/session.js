@@ -40,7 +40,7 @@ export default Ember.Service.extend({
     loadFromStorage(field) {
         let value = localStorage.getItem(field);
 
-        if (value !== "") {
+        if (value !== null) {
             return value;
         } 
 

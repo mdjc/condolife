@@ -3,15 +3,22 @@
 
 {{#results-panel results=model noResultsMsg='No hay facturas por pagar'}}
    {{#each model as |bill|}}
-        <div class='summary'>
-            {{#link-to "condo.due-bill" bill.id class="btn btn-default"}}Pagar{{/link-to}}
+        <div class='row summary'>
+            <div class="col-xs-12 col-sm-10">
+                <strong> No. {{bill.id}}</strong> - Pago {{translate bill.paymentStatus}},
+                {{bill.description}} por {{pesos bill.dueAmount}}- 
+                <strong>
+                    pague antes de {{translate bill.dueDate.month}} {{bill.dueDate.dayOfMonth}}/{{bill.dueDate.year}}
+                </strong>
+            </div>
 
-            <strong> No. {{bill.id}}</strong> - Pago {{translate bill.paymentStatus}},
-            {{bill.description}} por {{pesos bill.dueAmount}}- 
-            <strong>
-                pague antes de {{translate bill.dueDate.month}} {{bill.dueDate.dayOfMonth}}/{{bill.dueDate.year}}
-            </strong>
+            <div class="col-xs-12 col-sm-2 text-right">
+                {{#link-to "condo.due-bill" bill.id class="btn btn-default"}}Pagar{{/link-to}}
+            </div>
+            
         </div>
+
+
     {{/each}}
 {{/results-panel}}
 

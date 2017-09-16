@@ -1,20 +1,20 @@
 <div class="container">
     <div class="row">
          <div class="col-xs-12">
-            <h1>Selecciona un Condominio</h1>
+            <h2>Selecciona un Condominio</h2>
          </div>
     </div>
 
     <div class="row">
         {{#each model as |condo|}}
             <div class="col-xs-12 col-sm-5 col-md-3">                
-                <div class="thumbnail">
+                <div class="thumbnail condo-list-item text-center">
                     <img src="{{imgHost}}/condos/{{condo.id}}/img" 
                      class="img-responsive" alt="Foto {{condo.name}}">
                     <div class="caption">
-                        {{#link-to "condo" condo.id}}<h3> {{condo.name}}</h3>{{/link-to}}
+                        {{#link-to "condo.dashboard" condo.id}}<h4>{{condo.name}}</h4>{{/link-to}}
                         <p>{{condo.address}}</p>
-                        <p>Contacto: {{condo.contactName}} {{condo.contactPhone}}</p>
+                        <p>Contacto: {{condo.contactName}} {{format-phone condo.contactPhone}}</p>
                     </div>
                 </div>                
             </div>

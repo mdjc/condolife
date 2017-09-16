@@ -1,6 +1,20 @@
 html,
 body {
+  color: grey;
   overflow-x: hidden; /* Prevent scroll on narrow devices */
+}
+
+h2 {
+  color: #196d93;
+  font-size: 23px;
+}
+
+.building-bg {
+  background: url(../extra-dark-bg-opt.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 
 .navbar-custom {
@@ -14,30 +28,88 @@ body {
   margin: 0 auto;
 }
 
+.form-login h2 {
+  color: white;
+}
+
 .font-lg {
     font-size: 30px;
 }
 
-.hero {
-    color: white;
-    background-color: #207EA9;
-    background-repeat: no-repeat;
-    padding-bottom: 110px;
-    padding-top: 70px;
+.form-login input {
+  background-color: transparent;
+  font-size: 16px;
 }
 
-.hero h2 {
-    font-size: 38px;
+.hero {
+    color: white;
+    background-repeat: no-repeat;
+    padding-bottom: 110px;
+    padding-top: 95px;
+    background: url(../hero-bg-dark-opt.jpg) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.hero h1 {
+  font-size: 38px;
 }
 
 .hero p {
-    font-size: 16px;
+    font-size: 18px;
     margin-top: 25px;
     margin-bottom: 70px;
 }
 
 .hero a {
     padding:10px 30px 10px 30px;
+}
+
+.condo-list-item .caption {
+  color: grey;
+}
+
+.condo-info {
+  margin-top: 15px;
+}
+
+/* Featurettes
+------------------------- */
+
+.featurette-divider {
+  margin: 50px 0;
+  border-color: #c6c6c6;
+}
+
+/* Thin out the marketing headings */
+.featurette-heading {
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: -1px;
+  color: #196d93;
+}
+
+.featurette-small-heading {
+  color: #e6b132;
+}
+
+.features-summary-container {
+  margin-bottom: 40px;
+}
+
+.features-container {
+  background-color: #f1f1f1;
+  color: #444;
+}
+
+.enroll-info-panel {
+  background-color: white;
+}
+
+.enroll-info-panel p {
+  font-size: 16px;
 }
 
 /*
@@ -85,7 +157,20 @@ body {
   }
 }
 
+@media (min-width: 768px) {
+  .featurette-heading {
+    font-size: 50px;
+  }
+}
+
+@media (min-width: 992px) {
+  .featurette-heading {
+    margin-top: 120px;
+  }
+}
+
 .header-with-divider {
+    color: grey;
     border-bottom: 1px solid grey;
     padding-bottom: 10px;
     padding-top: 10px;
@@ -102,9 +187,32 @@ body {
     margin-right: 10px;
 }
 
+.dashboard-icon {
+  height: 65px;
+}
+
+.panel-dashboard {
+  padding-top: 10px;
+  color: grey;
+  height: 103px;
+}
+
+.panel-dashboard h4{
+  margin-top: 0;
+}
 
 .monthly-balance {
     padding-bottom: 25px;
+}
+
+.tiny-text {
+  font-size: 12px;
+}
+
+.highlighted-info {
+  color: grey;
+  padding-top: 5px;
+  margin-bottom: 3px;
 }
 
 .summary {

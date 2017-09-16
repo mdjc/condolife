@@ -1,3 +1,5 @@
-{{nav-menu onLogout=(action "onLogout")}}
+{{#if navVisible}}
+    {{nav-menu onLogout=(action "onLogout")}}
+{{/if}}
 
 {{outlet}}

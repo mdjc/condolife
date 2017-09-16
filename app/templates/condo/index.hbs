@@ -1,0 +1,53 @@
+<a href="#" {{action 'back'}} class="active ember-view">
+    <span class="glyphicon glyphicon-hand-left"></span> Volver
+</a>
+
+<h3>Condominio {{model.condo.name}}</h3>
+<div class="panel panel-default">
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-xs-12 col-sm-4">
+                <img src="{{imgHost}}/condos/{{model.condo.id}}/img" 
+                class="img-responsive" alt="Foto {{condo.name}}">
+            </div>
+            
+            <div class="col-xs-12 col-sm-8 condo-info">
+                <p><strong>Administrado por:</strong> {{model.condo.manager.name}}</p>
+                <p><strong>Direcci&oacute;n:</strong> {{model.condo.address}}</p>
+                <p><strong>Contacto:</strong> {{model.condo.contactName}} 
+                {{format-phone model.condo.contactPhone}}</p>
+                <p><strong>D&iacute;a de facturaci&oacute;n:</strong>
+                 {{model.condo.billingDayOfMonth}} de cada mes</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        <h4>Apartamentos</h4>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12 col-sm-6">
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped">
+                <thead><tr> <th>Apartamento</th> <th>Residente</th> </tr></thead>
+                <tbody>
+                    {{#each model.apartments as |apartment|}}
+                        <tr> 
+                            <td>{{apartment.name}}</td> 
+                            <td>{{apartment.resident.name}}</td>
+                        </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+

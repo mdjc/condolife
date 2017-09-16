@@ -10,7 +10,7 @@ export default Ember.Route.extend({
 
     afterModel(model) {
         if (model.get('length') === 1) {
-          this.transitionTo('condo', model.get('firstObject.id'));
+          this.transitionTo('condo.dashboard', model.get('firstObject.id'));
         } else {
             this.get('session').setUserHasSeveralCondos(true);
         }
