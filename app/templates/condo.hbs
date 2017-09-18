@@ -47,6 +47,10 @@
               <span class="glyphicon glyphicon-dashboard"></span> Tablero
             {{/link-to}}
 
+            {{#link-to "condo.past-due-apartments" model.condo.id class="list-group-item"}}
+              <span class="glyphicon glyphicon-time"></span> Apartamentos Retrasados
+            {{/link-to}}
+
             {{#if isResident}}
               {{#link-to "condo.due-bills" model.condo.id class="list-group-item"}}
                 <span class="glyphicon glyphicon-list-alt"></span> Facturas por Pagar

@@ -22,6 +22,7 @@ Router.map(function() {
     this.route('outlay-log');
     this.route('outlay', {path: 'outlay-log/:outlayId'});
     this.route('new-outlay');
+    this.route('past-due-apartments');
   });
 
   this.route("notfound");

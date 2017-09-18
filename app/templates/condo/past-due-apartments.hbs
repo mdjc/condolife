@@ -1,0 +1,25 @@
+<h2>Apartamentos Retrasados</h2>
+
+<div class="row">
+    <div class="col-xs-12 col-sm-6">
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped">
+                <thead><tr> <th>Apartamento</th> <th>Residente</th> <th>Deuda</th> </tr></thead>
+                <tbody>
+                    {{#each model as |apartmentDebt|}}
+                        <tr> 
+                            <td>{{apartmentDebt.apartment.name}}</td> 
+                            <td>{{apartmentDebt.apartment.resident.name}}</td>
+                            <td>{{apartmentDebt.debt}}</td>
+                        </tr>
+                    {{/each}}
+                    {{#unless model.length}}
+                        <tr> 
+                            <td colspan="3">No existen apartmentos retrasados.</td>
+                        </tr>
+                    {{/unless}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

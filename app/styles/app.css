@@ -67,6 +67,12 @@ h2 {
     padding:10px 30px 10px 30px;
 }
 
+.img-thumbnail {
+  width: 150px;
+  height: 150px; 
+  border: none;
+}
+
 .condo-list-item .caption {
   color: grey;
 }

@@ -8,9 +8,9 @@
     <div class="row">
         {{#each model as |condo|}}
             <div class="col-xs-12 col-sm-5 col-md-3">                
-                <div class="thumbnail condo-list-item text-center">
+                <div class="condo-list-item text-center">
                     <img src="{{imgHost}}/condos/{{condo.id}}/img" 
-                     class="img-responsive" alt="Foto {{condo.name}}">
+                     class="img-responsive img-thumbnail" alt="Foto {{condo.name}}">
                     <div class="caption">
                         {{#link-to "condo.dashboard" condo.id}}<h4>{{condo.name}}</h4>{{/link-to}}
                         <p>{{condo.address}}</p>
